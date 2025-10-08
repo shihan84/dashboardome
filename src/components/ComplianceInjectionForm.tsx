@@ -16,13 +16,12 @@ import {
   PlayCircleOutlined,
   PauseCircleOutlined,
   SendOutlined,
-  InfoCircleOutlined,
 } from '@ant-design/icons';
 import { useStore } from '../store/useStore';
 import { SCTE35Encoder } from '../utils/scte35';
 import { OMEApiService } from '../services/omeApi';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 const { Option } = Select;
 
 interface FormData {

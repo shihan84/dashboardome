@@ -36,7 +36,6 @@ import { VHostManagement } from './VHostManagement';
 import { RecordingManagement } from './RecordingManagement';
 import { PushPublishingManagement } from './PushPublishingManagement';
 import { StatisticsDashboard } from './StatisticsDashboard';
-import { ErrorBoundary } from './ErrorBoundary';
 import { useStore } from '../store/useStore';
 import { OMEApiService } from '../services/omeApi';
 
@@ -48,7 +47,7 @@ type DashboardTab = 'overview' | 'compliance' | 'validator' | 'events' | 'schedu
 export const Dashboard: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<DashboardTab>('overview');
   const [loading, setLoading] = useState(false);
-  const [serverStats, setServerStats] = useState<any>(null);
+  const [serverStats, setServerStats] = useState<unknown>(null);
   const [connectionStatus, setConnectionStatus] = useState<'connected' | 'disconnected' | 'checking'>('checking');
 
   const {
@@ -59,10 +58,6 @@ export const Dashboard: React.FC = () => {
     omePort,
     omeUsername,
     omePassword,
-    currentVHost,
-    currentApp,
-    setOMEConnection,
-    setCurrentStream,
   } = useStore();
 
   const omeApi = new OMEApiService(omeHost, omePort, omeUsername, omePassword);
@@ -70,14 +65,14 @@ export const Dashboard: React.FC = () => {
   useEffect(() => {
     checkConnection();
     loadServerStats();
-  }, [omeHost, omePort]);
+  }, [omeHost, omePort, checkConnection, loadServerStats]);
 
   const checkConnection = async () => {
     setConnectionStatus('checking');
     try {
       const isConnected = await omeApi.testConnection();
       setConnectionStatus(isConnected ? 'connected' : 'disconnected');
-    } catch (error) {
+    } catch {
       setConnectionStatus('disconnected');
     }
   };
