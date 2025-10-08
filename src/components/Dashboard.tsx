@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ErrorBoundary } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Layout,
   Menu,
@@ -21,6 +21,10 @@ import {
   CodeOutlined,
   InfoCircleOutlined,
   ReloadOutlined,
+  CloudServerOutlined,
+  VideoCameraOutlined,
+  SendOutlined,
+  BarChartOutlined,
 } from '@ant-design/icons';
 import { ComplianceInjectionForm } from './ComplianceInjectionForm';
 import { StreamProfileValidator } from './StreamProfileValidator';
@@ -32,6 +36,7 @@ import { VHostManagement } from './VHostManagement';
 import { RecordingManagement } from './RecordingManagement';
 import { PushPublishingManagement } from './PushPublishingManagement';
 import { StatisticsDashboard } from './StatisticsDashboard';
+import { ErrorBoundary } from './ErrorBoundary';
 import { useStore } from '../store/useStore';
 import { OMEApiService } from '../services/omeApi';
 

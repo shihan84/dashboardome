@@ -10,24 +10,13 @@ import type {
   StreamRecorded,
   StreamPush,
   StreamPushed,
-  OMEMetrics,
-  ScheduledChannel,
-  MultiplexChannel,
-  ThumbnailConfig,
   HLSDump,
   WebRTCConfig,
   SRTConfig,
   RTMPConfig,
   RTSPConfig,
-  SignedPolicy,
-  AdmissionWebhooks,
   DRMConfig,
-  SubtitleConfig,
-  GPUAcceleration,
-  AdmissionWebhookRequest,
-  AdmissionWebhookResponse,
-  TranscodeWebhookRequest,
-  TranscodeWebhookResponse
+  GPUAcceleration
 } from '../types/index';
 
 export class OMEApiService {
@@ -43,6 +32,12 @@ export class OMEApiService {
     return {
       'Content-Type': 'application/json',
       ...(this.auth && { Authorization: `Basic ${this.auth}` }),
+    };
+  }
+
+  private getRequestConfig() {
+    return {
+      headers: this.getHeaders(),
     };
   }
 

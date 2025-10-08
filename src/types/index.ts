@@ -118,6 +118,114 @@ export interface OMEVHostDetailed {
   };
 }
 
+export interface OutputProfile {
+  name: string;
+  outputStreamName: string;
+  encodes?: {
+    video?: {
+      codec: string;
+      width: number;
+      height: number;
+      bitrate: number;
+      bitrateString: string;
+      profile: string;
+      preset: string;
+      bframes: number;
+      keyFrameInterval: number;
+      rcMode: string;
+      threadCount: number;
+    };
+    audio?: {
+      codec: string;
+      bitrate: number;
+      bitrateString: string;
+      samplerate: number;
+      channel: number;
+    };
+  };
+  encoders?: {
+    encoder: {
+      name: string;
+      type: string;
+      threadCount: number;
+      options?: {
+        option: {
+          key: string;
+          value: string;
+        }[];
+      };
+    }[];
+  };
+  publishers?: {
+    srt?: {
+      port: number;
+      latency: number;
+      recvLatency: number;
+      peerLatency: number;
+      backlog: number;
+      sendBufferSize: number;
+      recvBufferSize: number;
+      udpRecvBufferSize: number;
+      udpSendBufferSize: number;
+      maxbw: number;
+      inputbw: number;
+      oheadbw: number;
+      congestion: number;
+      tsbpd: number;
+      tlpktdrop: number;
+      sndbuf: number;
+      rcvbuf: number;
+      lossmaxttl: number;
+      minversion: string;
+      streamid: string;
+      smoother: string;
+      messageapi: number;
+      payloadSize: number;
+      srtEnc: number;
+      srtpbkeylen: number;
+      srtpassphrase: string;
+      srtkmrefreshrate: number;
+      srtkmstate: number;
+      srtkmpreannounce: number;
+      srtkmr: number;
+      srtkmx: number;
+      srtkmy: number;
+      srtkmz: number;
+      srtkmw: number;
+      srtkmv: number;
+      srtkmu: number;
+      srtkmt: number;
+      srtkms: number;
+      srtkmq: number;
+      srtkmp: number;
+      srtkmo: number;
+      srtkmn: number;
+      srtkml: number;
+      srtkmk: number;
+      srtkmj: number;
+      srtkmi: number;
+      srtkmh: number;
+      srtkmg: number;
+      srtkmf: number;
+      srtkme: number;
+      srtkmd: number;
+      srtkmc: number;
+      srtkmb: number;
+      srtkma: number;
+      srtkm9: number;
+      srtkm8: number;
+      srtkm7: number;
+      srtkm6: number;
+      srtkm5: number;
+      srtkm4: number;
+      srtkm3: number;
+      srtkm2: number;
+      srtkm1: number;
+      srtkm0: number;
+    };
+  };
+}
+
 export interface OMEApplicationDetailed {
   name: string;
   type: string;
