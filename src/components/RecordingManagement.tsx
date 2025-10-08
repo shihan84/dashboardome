@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   Card,
   Table,
@@ -10,16 +10,11 @@ import {
   Space,
   Typography,
   Tag,
-  Popconfirm,
   message,
   Tabs,
   Row,
   Col,
-  Switch,
   InputNumber,
-  TimePicker,
-  DatePicker,
-  Badge,
   Progress,
   Tooltip,
   Alert,
@@ -27,7 +22,6 @@ import {
 } from 'antd';
 import {
   PlayCircleOutlined,
-  PauseCircleOutlined,
   StopOutlined,
   PlusOutlined,
   ReloadOutlined,
@@ -36,8 +30,6 @@ import {
   FileOutlined,
   DownloadOutlined,
   InfoCircleOutlined,
-  DeleteOutlined,
-  EditOutlined,
 } from '@ant-design/icons';
 import { useStore } from '../store/useStore';
 import { OMEApiService } from '../services/omeApi';
@@ -57,13 +49,13 @@ export const RecordingManagement: React.FC = () => {
   const [form] = Form.useForm();
   
   const { omeHost, omePort, omeUsername, omePassword, currentVHost, currentApp } = useStore();
-  const omeApi = new OMEApiService(omeHost, omePort, omeUsername, omePassword);
+  const omeApi = useMemo(() => new OMEApiService(omeHost, omePort, omeUsername, omePassword), [omeHost, omePort, omeUsername, omePassword]);
 
   useEffect(() => {
     loadRecordings();
-  }, [currentVHost, currentApp]);
+  }, [loadRecordings]);
 
-  const loadRecordings = async () => {
+  const loadRecordings = useCallback(async () => {
     if (!currentVHost || !currentApp) return;
     
     setLoading(true);
@@ -76,9 +68,9 @@ export const RecordingManagement: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentVHost, currentApp, omeApi]);
 
-  const handleStartRecording = async (values: any) => {
+  const handleStartRecording = async (values: { id: string; streamName: string; variantNames?: string; outputPath: string; format: string; duration?: number; scheduleStart?: string; scheduleEnd?: string }) => {
     if (!currentVHost || !currentApp) {
       message.error('Please select a virtual host and application');
       return;
@@ -169,7 +161,7 @@ export const RecordingManagement: React.FC = () => {
       title: 'Stream',
       dataIndex: 'stream',
       key: 'stream',
-      render: (stream: any) => (
+      render: (stream: { name: string }) => (
         <Space>
           <VideoCameraOutlined />
           <Text strong>{stream.name}</Text>
