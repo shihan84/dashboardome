@@ -36,6 +36,7 @@ import { VHostManagement } from './VHostManagement';
 import { RecordingManagement } from './RecordingManagement';
 import { PushPublishingManagement } from './PushPublishingManagement';
 import { StatisticsDashboard } from './StatisticsDashboard';
+import { Footer } from './Footer';
 import { useStore } from '../store/useStore';
 import { OMEApiService } from '../services/omeApi';
 
@@ -339,6 +340,8 @@ export const Dashboard: React.FC = () => {
           </Spin>
         </Content>
       </Layout>
+      
+      <Footer />
     </Layout>
   );
 };
