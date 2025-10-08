@@ -11,7 +11,6 @@ import {
   Col,
   Divider,
   Alert,
-  Tabs,
   Collapse,
 } from 'antd';
 import {
@@ -19,7 +18,6 @@ import {
   CopyOutlined,
   DownloadOutlined,
   InfoCircleOutlined,
-  SettingOutlined,
 } from '@ant-design/icons';
 import type { OutputProfileConfig } from '../types/index';
 

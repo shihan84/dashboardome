@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Layout,
   Menu,
@@ -47,7 +47,7 @@ type DashboardTab = 'overview' | 'compliance' | 'validator' | 'events' | 'schedu
 export const Dashboard: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<DashboardTab>('overview');
   const [loading, setLoading] = useState(false);
-  const [serverStats, setServerStats] = useState<unknown>(null);
+  const [, setServerStats] = useState<unknown>(null);
   const [connectionStatus, setConnectionStatus] = useState<'connected' | 'disconnected' | 'checking'>('checking');
 
   const {
@@ -67,7 +67,7 @@ export const Dashboard: React.FC = () => {
     loadServerStats();
   }, [omeHost, omePort, checkConnection, loadServerStats]);
 
-  const checkConnection = async () => {
+  const checkConnection = useCallback(async () => {
     setConnectionStatus('checking');
     try {
       const isConnected = await omeApi.testConnection();
@@ -75,9 +75,9 @@ export const Dashboard: React.FC = () => {
     } catch {
       setConnectionStatus('disconnected');
     }
-  };
+  }, [omeApi]);
 
-  const loadServerStats = async () => {
+  const loadServerStats = useCallback(async () => {
     setLoading(true);
     try {
       const stats = await omeApi.getServerStats();
@@ -87,7 +87,7 @@ export const Dashboard: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [omeApi]);
 
   const menuItems = [
     {

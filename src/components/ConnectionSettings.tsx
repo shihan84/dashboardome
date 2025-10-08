@@ -18,7 +18,7 @@ import {
 import { useStore } from '../store/useStore';
 import { OMEApiService } from '../services/omeApi';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 export const ConnectionSettings: React.FC = () => {
   const [form] = Form.useForm();
@@ -33,7 +33,7 @@ export const ConnectionSettings: React.FC = () => {
     setOMEConnection,
   } = useStore();
 
-  const handleSave = (values: any) => {
+  const handleSave = (values: { host: string; port: number; username?: string; password?: string }) => {
     setOMEConnection(
       values.host,
       values.port,
@@ -58,7 +58,7 @@ export const ConnectionSettings: React.FC = () => {
       
       const isConnected = await api.testConnection();
       setTestResult(isConnected ? 'success' : 'error');
-    } catch (error) {
+    } catch {
       setTestResult('error');
     } finally {
       setTesting(false);
