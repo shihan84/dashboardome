@@ -1,0 +1,62 @@
+/* Custom styles for OME Compliance Dashboard */
+.ant-layout {
+  min-height: 100vh;
+}
+
+.ant-layout-header {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.ant-layout-sider {
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.ant-menu-item {
+  margin: 4px 0;
+}
+
+.ant-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.ant-statistic-title {
+  color: #666;
+  font-size: 14px;
+}
+
+.ant-statistic-content {
+  color: #262626;
+  font-weight: 600;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ant-layout-sider {
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 64px;
+    z-index: 1000;
+  }
+}
