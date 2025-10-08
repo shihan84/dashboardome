@@ -25,6 +25,10 @@ export default defineConfig([
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-empty-object-type': 'warn',
       'react-hooks/exhaustive-deps': 'warn',
+      // Disable duplicate rules
+      'no-unused-vars': 'off', // Use @typescript-eslint/no-unused-vars instead
+      // Allow console statements
+      'no-console': 'off',
     },
   },
 ])
