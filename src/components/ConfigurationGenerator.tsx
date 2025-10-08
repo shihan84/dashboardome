@@ -284,7 +284,7 @@ export const ConfigurationGenerator: React.FC = () => {
                       placeholder="5000000"
                       min={1000000}
                       max={50000000}
-                      formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      formatter={(value) => (value || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                       parser={(value) => value!.replace(/\$\s?|(,*)/g, '')}
                     />
                   </Form.Item>
@@ -300,7 +300,7 @@ export const ConfigurationGenerator: React.FC = () => {
                       placeholder="128000"
                       min={64000}
                       max={512000}
-                      formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      formatter={(value) => (value || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                       parser={(value) => value!.replace(/\$\s?|(,*)/g, '')}
                     />
                   </Form.Item>

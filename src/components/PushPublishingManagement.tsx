@@ -407,7 +407,7 @@ export const PushPublishingManagement: React.FC = () => {
           form={form}
           layout="vertical"
           onFinish={handleStartPush}
-          initialValues={editingPush}
+          initialValues={editingPush || {}}
         >
           <Tabs defaultActiveKey="basic">
             <TabPane tab="Basic" key="basic">

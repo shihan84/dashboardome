@@ -12,6 +12,8 @@ import {
   Alert,
   Popconfirm,
   Tag,
+  Row,
+  Col,
 } from 'antd';
 import {
   ClockCircleOutlined,
@@ -76,7 +78,7 @@ export const SCTE35Scheduler: React.FC = () => {
       adDuration: values.adDuration,
       preRoll: values.preRoll,
       scheduledTime,
-      status: 'scheduled',
+        status: 'scheduled' as const,
     };
 
     const updatedEvents = [...scheduledEvents, newEvent];
@@ -110,7 +112,7 @@ export const SCTE35Scheduler: React.FC = () => {
 
     // Mark as executed
     const updatedEvents = scheduledEvents.map(e =>
-      e.id === event.id ? { ...e, status: 'executed' } : e
+      e.id === event.id ? { ...e, status: 'executed' as const } : e
     );
     saveScheduledEvents(updatedEvents);
   };

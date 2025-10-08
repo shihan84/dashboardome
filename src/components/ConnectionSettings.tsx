@@ -176,11 +176,11 @@ export const ConnectionSettings: React.FC = () => {
           <div>
             <Text code>GET /v1/stats/current</Text> - Server statistics
             <br />
-            <Text code>GET /v1/vhosts/{vhost}/apps/{app}/streams</Text> - Stream list
+            <Text code>GET /v1/vhosts/&#123;vhost&#125;/apps/&#123;app&#125;/streams</Text> - Stream list
             <br />
-            <Text code>POST /v1/vhosts/{vhost}/apps/{app}/streams/{stream}:sendEvent</Text> - Send events
+            <Text code>POST /v1/vhosts/&#123;vhost&#125;/apps/&#123;app&#125;/streams/&#123;stream&#125;/sendEvent</Text> - Send events
             <br />
-            <Text code>GET /v1/vhosts/{vhost}/apps/{app}/outputProfiles</Text> - Output profiles
+            <Text code>GET /v1/vhosts/&#123;vhost&#125;/apps/&#123;app&#125;/outputProfiles</Text> - Output profiles
           </div>
         }
         type="info"

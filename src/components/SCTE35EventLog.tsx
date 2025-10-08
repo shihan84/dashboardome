@@ -301,7 +301,7 @@ export const SCTE35EventLog: React.FC = () => {
             style={{ width: '100%' }}
             placeholder={['Start Date', 'End Date']}
             value={dateRange}
-            onChange={setDateRange}
+            onChange={(dates) => setDateRange(dates)}
           />
         </Col>
         <Col span={6}>

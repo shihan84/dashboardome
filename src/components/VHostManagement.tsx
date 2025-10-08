@@ -65,9 +65,9 @@ export const VHostManagement: React.FC = () => {
       const details = await Promise.all(
         vhostList.map(async (vhost) => {
           try {
-            return await omeApi.getVHostDetailed(vhost);
+            return await omeApi.getVHostDetailed(vhost.name);
           } catch (error) {
-            console.error(`Failed to load details for vhost ${vhost}:`, error);
+            console.error(`Failed to load details for vhost ${vhost.name}:`, error);
             return null;
           }
         })
@@ -317,7 +317,7 @@ export const VHostManagement: React.FC = () => {
           form={form}
           layout="vertical"
           onFinish={handleCreateVHost}
-          initialValues={editingVHost}
+          initialValues={editingVHost || {}}
         >
           <Tabs defaultActiveKey="basic">
             <TabPane tab="Basic" key="basic">
