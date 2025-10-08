@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   Card,
   Table,
@@ -14,17 +14,13 @@ import {
   Tabs,
   Row,
   Col,
-  InputNumber,
-  Badge,
   Progress,
   Tooltip,
   Alert,
   Statistic,
-  Divider,
 } from 'antd';
 import {
   PlayCircleOutlined,
-  PauseCircleOutlined,
   StopOutlined,
   PlusOutlined,
   ReloadOutlined,
@@ -33,8 +29,6 @@ import {
   ClockCircleOutlined,
   FileOutlined,
   InfoCircleOutlined,
-  DeleteOutlined,
-  EditOutlined,
   GlobalOutlined,
 } from '@ant-design/icons';
 import { useStore } from '../store/useStore';
@@ -54,13 +48,13 @@ export const PushPublishingManagement: React.FC = () => {
   const [form] = Form.useForm();
   
   const { omeHost, omePort, omeUsername, omePassword, currentVHost, currentApp } = useStore();
-  const omeApi = new OMEApiService(omeHost, omePort, omeUsername, omePassword);
+  const omeApi = useMemo(() => new OMEApiService(omeHost, omePort, omeUsername, omePassword), [omeHost, omePort, omeUsername, omePassword]);
 
   useEffect(() => {
     loadPushes();
-  }, [currentVHost, currentApp]);
+  }, [loadPushes]);
 
-  const loadPushes = async () => {
+  const loadPushes = useCallback(async () => {
     if (!currentVHost || !currentApp) return;
     
     setLoading(true);
@@ -73,9 +67,9 @@ export const PushPublishingManagement: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentVHost, currentApp, omeApi]);
 
-  const handleStartPush = async (values: any) => {
+  const handleStartPush = async (values: { id: string; streamName: string; tracks?: string; variantNames?: string; destination: string; protocol: string; url: string; streamKey?: string; username?: string; password?: string }) => {
     if (!currentVHost || !currentApp) {
       message.error('Please select a virtual host and application');
       return;
@@ -174,7 +168,7 @@ export const PushPublishingManagement: React.FC = () => {
       title: 'Stream',
       dataIndex: 'stream',
       key: 'stream',
-      render: (stream: any) => (
+      render: (stream: { name: string }) => (
         <Space>
           <SendOutlined />
           <Text strong>{stream.name}</Text>

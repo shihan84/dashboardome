@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   Layout,
   Menu,
@@ -61,7 +61,7 @@ export const Dashboard: React.FC = () => {
     omePassword,
   } = useStore();
 
-  const omeApi = new OMEApiService(omeHost, omePort, omeUsername, omePassword);
+  const omeApi = useMemo(() => new OMEApiService(omeHost, omePort, omeUsername, omePassword), [omeHost, omePort, omeUsername, omePassword]);
 
   useEffect(() => {
     checkConnection();
