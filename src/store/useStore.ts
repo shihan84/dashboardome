@@ -110,7 +110,7 @@ export const useStore = create<AppState>()(
       },
     }),
     {
-      name: 'ome-compliance-store',
+      name: 'ibs-itassist-store',
       partialize: (state) => ({
         events: state.events,
         lastEventId: state.lastEventId,

@@ -250,7 +250,7 @@ export const Dashboard: React.FC = () => {
       <Row style={{ marginTop: 24 }}>
         <Col span={24}>
           <Alert
-            message="Distributor Compliance Dashboard"
+            message="IBS Itassist Broadcast Solutions"
             description={
               <div>
                 <p>
@@ -309,7 +309,7 @@ export const Dashboard: React.FC = () => {
           <Space>
             <PlayCircleOutlined style={{ fontSize: 24, color: '#1890ff' }} />
             <Title level={3} style={{ margin: 0 }}>
-              OME Compliance Dashboard
+              IBS Itassist Broadcast Solutions
             </Title>
           </Space>
           <Space>

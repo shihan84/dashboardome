@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  ibs-dashboard:
+    build: .
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Optional: Add OME server for testing
+  ome-server:
+    image: airensoft/ovenmediaengine:latest
+    ports:
+      - "1935:1935"
+      - "9999:9999/udp"
+      - "9000:9000"
+      - "3333:3333"
+      - "3478:3478"
+      - "10000-10009:10000-10009/udp"
+    environment:
+      - OME_HOST_IP=localhost
+    restart: unless-stopped
+    profiles:
+      - ome

@@ -1,4 +1,4 @@
-# OME Compliance Dashboard
+# IBS Itassist Broadcast Solutions
 
 A comprehensive web-based management tool for OvenMediaEngine (OME) servers, ensuring 100% compliance with distributor technical specifications.
 
@@ -31,7 +31,7 @@ A comprehensive web-based management tool for OvenMediaEngine (OME) servers, ens
 1. **Clone and install dependencies:**
 ```bash
 git clone <repository-url>
-cd ome-compliance-dashboard
+cd ibs-itassist-broadcast-solutions
 npm install
 ```
 

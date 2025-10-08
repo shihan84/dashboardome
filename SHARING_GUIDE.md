@@ -1,4 +1,4 @@
-# OME Compliance Dashboard - Sharing Guide
+# IBS Itassist Broadcast Solutions - Sharing Guide
 
 ## 🚀 Quick Start for New Users
 
@@ -10,8 +10,8 @@
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/shihan84/dashboardome.git
-cd dashboardome
+git clone https://github.com/yourusername/ibs-itassist-broadcast-solutions.git
+cd ibs-itassist-broadcast-solutions
 
 # Install dependencies
 npm install
@@ -49,7 +49,7 @@ docker run -p 5173:5173 ome-dashboard
 
 ## 📁 Project Structure
 ```
-ome-compliance-dashboard/
+ibs-itassist-broadcast-solutions/
 ├── src/
 │   ├── components/     # React components
 │   ├── services/       # API services
@@ -92,7 +92,7 @@ node mock-ome-server.cjs
 3. **Import errors:** Ensure all dependencies are installed
 
 ### Support
-- **Repository:** https://github.com/shihan84/dashboardome.git
+- **Repository:** https://github.com/yourusername/ibs-itassist-broadcast-solutions.git
 - **Issues:** Use GitHub Issues for bug reports
 - **Documentation:** See README.md and AI_AGENT_INSTRUCTIONS.md
 
@@ -119,5 +119,5 @@ node mock-ome-server.cjs
 
 ---
 
-**Repository:** https://github.com/shihan84/dashboardome.git  
+**Repository:** https://github.com/yourusername/ibs-itassist-broadcast-solutions.git  
 **Documentation:** See README.md for complete setup instructions
