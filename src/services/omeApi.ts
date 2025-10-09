@@ -37,7 +37,7 @@ export class OMEApiService {
 
   private getRequestConfig() {
     return {
-      headers: { headers: this.getHeaders() },
+      headers: this.getHeaders(),
     };
   }
 
@@ -47,7 +47,7 @@ export class OMEApiService {
   async getVHosts(): Promise<OMEVHost[]> {
     try {
       const response = await axios.get(`${this.baseUrl}/vhosts`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response || [];
     } catch (error) {
@@ -62,7 +62,7 @@ export class OMEApiService {
   async getApplications(vhost: string): Promise<OMEApplication[]> {
     try {
       const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response || [];
     } catch (error) {
@@ -77,7 +77,7 @@ export class OMEApiService {
   async getStreams(vhost: string, app: string): Promise<OMEStream[]> {
     try {
       const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/streams`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response || [];
     } catch (error) {
@@ -92,7 +92,7 @@ export class OMEApiService {
   async getStreamInfo(vhost: string, app: string, stream: string): Promise<OMEStream> {
     try {
       const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/streams/${stream}`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response;
     } catch (error) {
@@ -108,7 +108,7 @@ export class OMEApiService {
   async getServerStats(): Promise<any> {
     try {
       const response = await axios.get(`${this.baseUrl}/stats/current`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response;
     } catch (error) {
@@ -123,7 +123,7 @@ export class OMEApiService {
   async getVHostStats(vhost: string): Promise<any> {
     try {
       const response = await axios.get(`${this.baseUrl}/stats/current/vhosts/${vhost}`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response;
     } catch (error) {
@@ -138,7 +138,7 @@ export class OMEApiService {
   async getAppStats(vhost: string, app: string): Promise<any> {
     try {
       const response = await axios.get(`${this.baseUrl}/stats/current/vhosts/${vhost}/apps/${app}`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response;
     } catch (error) {
@@ -153,7 +153,7 @@ export class OMEApiService {
   async getStreamStats(vhost: string, app: string, stream: string): Promise<any> {
     try {
       const response = await axios.get(`${this.baseUrl}/stats/current/vhosts/${vhost}/apps/${app}/streams/${stream}`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response;
     } catch (error) {
@@ -168,7 +168,7 @@ export class OMEApiService {
   async getOutputProfiles(vhost: string, app: string): Promise<string[]> {
     try {
       const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/outputProfiles`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response || [];
     } catch (error) {
@@ -183,7 +183,7 @@ export class OMEApiService {
   async createOutputProfile(vhost: string, app: string, profileData: any): Promise<any> {
     try {
       const response = await axios.post(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/outputProfiles`, [profileData], {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data;
     } catch (error) {
@@ -200,7 +200,7 @@ export class OMEApiService {
       const response = await axios.post(
         `${this.baseUrl}/vhosts/${vhost}/apps/${app}/streams/${stream}/sendEvent`,
         eventData,
-        { headers: { headers: this.getHeaders() } }
+        { headers: this.getHeaders() }
       );
       return response.data;
     } catch (error) {
@@ -229,7 +229,7 @@ export class OMEApiService {
   async testConnection(): Promise<boolean> {
     try {
       await axios.get(`${this.baseUrl}/stats/current`, { 
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
         timeout: 5000 
       });
       return true;
@@ -245,7 +245,7 @@ export class OMEApiService {
    */
   async getVHostDetailed(vhost: string): Promise<OMEVHostDetailed> {
     const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}`, {
-      headers: { headers: this.getHeaders() },
+      headers: this.getHeaders(),
     });
     return response.data.response;
   }
