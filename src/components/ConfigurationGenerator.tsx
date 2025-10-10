@@ -277,13 +277,13 @@ export const ConfigurationGenerator: React.FC = () => {
                     label="Video Bitrate (bps)"
                     rules={[{ required: true, message: 'Please enter video bitrate' }]}
                   >
-                    <InputNumber
+                  <InputNumber
                       style={{ width: '100%' }}
                       placeholder="5000000"
-                      min={1000000}
-                      max={50000000}
-                      formatter={(value) => (value || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                      parser={(value) => value!.replace(/\$\s?|(,*)/g, '')}
+                    min={1000000 as any}
+                    max={50000000 as any}
+                    formatter={((value: any) => ((value ?? 0) as number).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')) as any}
+                    parser={(value: string | undefined) => (value ? value.replace(/\$\s?|(,*)/g, '') : '')}
                     />
                   </Form.Item>
                 </Col>
@@ -293,13 +293,13 @@ export const ConfigurationGenerator: React.FC = () => {
                     label="Audio Bitrate (bps)"
                     rules={[{ required: true, message: 'Please enter audio bitrate' }]}
                   >
-                    <InputNumber
+                  <InputNumber
                       style={{ width: '100%' }}
                       placeholder="128000"
-                      min={64000}
-                      max={512000}
-                      formatter={(value) => (value || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                      parser={(value) => value!.replace(/\$\s?|(,*)/g, '')}
+                    min={64000 as any}
+                    max={512000 as any}
+                    formatter={((value: any) => ((value ?? 0) as number).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')) as any}
+                    parser={(value: string | undefined) => (value ? value.replace(/\$\s?|(,*)/g, '') : '')}
                     />
                   </Form.Item>
                 </Col>

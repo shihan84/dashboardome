@@ -6,11 +6,12 @@ import {
   InputNumber,
   Button,
   Space,
-  Alert,
   Divider,
   Typography,
   Row,
   Col,
+  message,
+  Alert,
 } from 'antd';
 import {
   PlayCircleOutlined,
@@ -59,7 +60,7 @@ export const ComplianceInjectionForm: React.FC = () => {
 
   const handleSubmit = async (values: FormData) => {
     if (!currentStream) {
-      Alert.error('No stream selected. Please select a stream first.');
+      message.error('No stream selected. Please select a stream first.');
       return;
     }
 
@@ -88,7 +89,7 @@ export const ComplianceInjectionForm: React.FC = () => {
         status: 'pending' as const,
       };
       
-      addEvent(eventData);
+      const createdId = addEvent(eventData);
 
       // Send to OME API
       await omeApi.injectSCTE35(
@@ -99,9 +100,11 @@ export const ComplianceInjectionForm: React.FC = () => {
       );
 
       // Update event status
-      updateEventStatus(eventData.id || '', 'sent');
+      if (createdId) {
+        updateEventStatus(createdId, 'sent');
+      }
       
-      Alert.success(`${values.action} signal sent successfully!`);
+      message.success(`${values.action} signal sent successfully!`);
       
       // Auto-increment event ID for next use
       setLastEventId(values.eventId + 1);
@@ -109,7 +112,7 @@ export const ComplianceInjectionForm: React.FC = () => {
       
     } catch (error) {
       console.error('Failed to inject SCTE-35:', error);
-      Alert.error('Failed to send SCTE-35 signal. Check OME connection.');
+      message.error('Failed to send SCTE-35 signal. Check OME connection.');
     } finally {
       setLoading(false);
     }

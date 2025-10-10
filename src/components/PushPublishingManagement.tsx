@@ -50,10 +50,6 @@ export const PushPublishingManagement: React.FC = () => {
   const { omeHost, omePort, omeUsername, omePassword, currentVHost, currentApp } = useStore();
   const omeApi = useMemo(() => new OMEApiService(omeHost, omePort, omeUsername, omePassword), [omeHost, omePort, omeUsername, omePassword]);
 
-  useEffect(() => {
-    loadPushes();
-  }, [loadPushes]);
-
   const loadPushes = useCallback(async () => {
     if (!currentVHost || !currentApp) return;
     
@@ -69,7 +65,11 @@ export const PushPublishingManagement: React.FC = () => {
     }
   }, [currentVHost, currentApp, omeApi]);
 
-  const handleStartPush = async (values: { id: string; streamName: string; tracks?: string; variantNames?: string; destination: string; protocol: string; url: string; streamKey?: string; username?: string; password?: string }) => {
+  useEffect(() => {
+    loadPushes();
+  }, [loadPushes]);
+
+  const handleStartPush = async (values: { id: string; streamName: string; tracks?: string; variantNames?: string; destination: string; protocol: 'srt' | 'rtmp' | 'mpegts'; url: string; streamKey?: string; username?: string; password?: string }) => {
     if (!currentVHost || !currentApp) {
       message.error('Please select a virtual host and application');
       return;
@@ -214,7 +214,7 @@ export const PushPublishingManagement: React.FC = () => {
             <Progress
               percent={Math.round(progress)}
               size="small"
-              status={push.state === 'error' ? 'exception' : 'active'}
+              status={'active'}
             />
           );
         }
@@ -488,7 +488,7 @@ export const PushPublishingManagement: React.FC = () => {
                         if (host && port) {
                           form.setFieldsValue({
                             protocol: 'srt',
-                            url: generateSRTUrl(host, parseInt(port), streamKey)
+                            url: generateSRTUrl(host, parseInt(port), streamKey || undefined)
                           });
                         }
                       }}

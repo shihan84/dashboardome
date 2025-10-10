@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  ovenmediaengine:
+    image: airensoft/ovenmediaengine:latest
+    container_name: ome-server
+    restart: unless-stopped
+    environment:
+      - OME_HOST_IP=127.0.0.1
+    ports:
+      # RTMP
+      - "1935:1935"
+      # SRT
+      - "9999:9999/udp"
+      # WebRTC Signaling
+      - "3333:3333"
+      - "3478:3478"
+      # WebRTC ICE
+      - "10000-10009:10000-10009/udp"
+      # LLHLS
+      - "9000:9000"
+    volumes:
+      # Configuration files
+      - ome-origin-conf:/opt/ovenmediaengine/bin/origin_conf
+      - ome-edge-conf:/opt/ovenmediaengine/bin/edge_conf
+      # Logs
+      - ome-logs:/opt/ovenmediaengine/logs
+    networks:
+      - ome-network
+
+  # Optional: Redis for clustering (if needed)
+  redis:
+    image: redis:7-alpine
+    container_name: ome-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - ome-network
+
+volumes:
+  ome-origin-conf:
+  ome-edge-conf:
+  ome-logs:
+
+networks:
+  ome-network:
+    driver: bridge

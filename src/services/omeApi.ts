@@ -37,7 +37,7 @@ export class OMEApiService {
 
   private getRequestConfig() {
     return {
-      headers: { headers: this.getHeaders() },
+      headers: this.getHeaders(),
     };
   }
 
@@ -47,7 +47,7 @@ export class OMEApiService {
   async getVHosts(): Promise<OMEVHost[]> {
     try {
       const response = await axios.get(`${this.baseUrl}/vhosts`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response || [];
     } catch (error) {
@@ -62,7 +62,7 @@ export class OMEApiService {
   async getApplications(vhost: string): Promise<OMEApplication[]> {
     try {
       const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response || [];
     } catch (error) {
@@ -77,7 +77,7 @@ export class OMEApiService {
   async getStreams(vhost: string, app: string): Promise<OMEStream[]> {
     try {
       const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/streams`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response || [];
     } catch (error) {
@@ -92,7 +92,7 @@ export class OMEApiService {
   async getStreamInfo(vhost: string, app: string, stream: string): Promise<OMEStream> {
     try {
       const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/streams/${stream}`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response;
     } catch (error) {
@@ -108,7 +108,7 @@ export class OMEApiService {
   async getServerStats(): Promise<any> {
     try {
       const response = await axios.get(`${this.baseUrl}/stats/current`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response;
     } catch (error) {
@@ -123,7 +123,7 @@ export class OMEApiService {
   async getVHostStats(vhost: string): Promise<any> {
     try {
       const response = await axios.get(`${this.baseUrl}/stats/current/vhosts/${vhost}`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response;
     } catch (error) {
@@ -138,7 +138,7 @@ export class OMEApiService {
   async getAppStats(vhost: string, app: string): Promise<any> {
     try {
       const response = await axios.get(`${this.baseUrl}/stats/current/vhosts/${vhost}/apps/${app}`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response;
     } catch (error) {
@@ -153,7 +153,7 @@ export class OMEApiService {
   async getStreamStats(vhost: string, app: string, stream: string): Promise<any> {
     try {
       const response = await axios.get(`${this.baseUrl}/stats/current/vhosts/${vhost}/apps/${app}/streams/${stream}`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response;
     } catch (error) {
@@ -168,7 +168,7 @@ export class OMEApiService {
   async getOutputProfiles(vhost: string, app: string): Promise<string[]> {
     try {
       const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/outputProfiles`, {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data.response || [];
     } catch (error) {
@@ -183,7 +183,7 @@ export class OMEApiService {
   async createOutputProfile(vhost: string, app: string, profileData: any): Promise<any> {
     try {
       const response = await axios.post(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/outputProfiles`, [profileData], {
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
       });
       return response.data;
     } catch (error) {
@@ -200,7 +200,7 @@ export class OMEApiService {
       const response = await axios.post(
         `${this.baseUrl}/vhosts/${vhost}/apps/${app}/streams/${stream}/sendEvent`,
         eventData,
-        { headers: { headers: this.getHeaders() } }
+        { headers: this.getHeaders() }
       );
       return response.data;
     } catch (error) {
@@ -229,7 +229,7 @@ export class OMEApiService {
   async testConnection(): Promise<boolean> {
     try {
       await axios.get(`${this.baseUrl}/stats/current`, { 
-        headers: { headers: this.getHeaders() },
+        headers: this.getHeaders(),
         timeout: 5000 
       });
       return true;
@@ -245,7 +245,7 @@ export class OMEApiService {
    */
   async getVHostDetailed(vhost: string): Promise<OMEVHostDetailed> {
     const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}`, {
-      headers: { headers: this.getHeaders() },
+      headers: this.getHeaders(),
     });
     return response.data.response;
   }
@@ -569,6 +569,101 @@ export class OMEApiService {
         }
       },
       ...config
+    };
+  }
+
+  // ===== SCHEDULED CHANNELS API =====
+  
+  // Get all scheduled channels
+  async getScheduledChannels(vhost: string, app: string): Promise<string[]> {
+    const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/scheduledChannels`, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Get scheduled channel details
+  async getScheduledChannel(vhost: string, app: string, streamName: string): Promise<any> {
+    const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/scheduledChannels/${streamName}`, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Create scheduled channel
+  async createScheduledChannel(vhost: string, app: string, channelData: any): Promise<any> {
+    const response = await axios.post(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/scheduledChannels`, channelData, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Update scheduled channel
+  async updateScheduledChannel(vhost: string, app: string, streamName: string, channelData: any): Promise<any> {
+    const response = await axios.patch(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/scheduledChannels/${streamName}`, channelData, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Delete scheduled channel
+  async deleteScheduledChannel(vhost: string, app: string, streamName: string): Promise<any> {
+    const response = await axios.delete(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/scheduledChannels/${streamName}`, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // ===== MULTIPLEX CHANNELS API =====
+  
+  // Get all multiplex channels
+  async getMultiplexChannels(vhost: string, app: string): Promise<string[]> {
+    const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/multiplexChannels`, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Get multiplex channel details
+  async getMultiplexChannel(vhost: string, app: string, streamName: string): Promise<any> {
+    const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/multiplexChannels/${streamName}`, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Create multiplex channel
+  async createMultiplexChannel(vhost: string, app: string, channelData: any): Promise<any> {
+    const response = await axios.post(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/multiplexChannels`, channelData, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Delete multiplex channel
+  async deleteMultiplexChannel(vhost: string, app: string, streamName: string): Promise<any> {
+    const response = await axios.delete(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/multiplexChannels/${streamName}`, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // ===== STREAM SEARCH AND FILTERING =====
+  
+  // Search streams across all types
+  async searchStreams(vhost: string, app: string, query: string): Promise<any> {
+    const [regularStreams, scheduledChannels, multiplexChannels] = await Promise.all([
+      this.getStreams(vhost, app).catch(() => []),
+      this.getScheduledChannels(vhost, app).catch(() => []),
+      this.getMultiplexChannels(vhost, app).catch(() => [])
+    ]);
+
+    const allStreams = [
+      ...regularStreams.map((stream: any) => ({ ...stream, type: 'regular' })),
+      ...scheduledChannels.map((name: string) => ({ name, type: 'scheduled' })),
+      ...multiplexChannels.map((name: string) => ({ name, type: 'multiplex' }))
+    ];
+
+    return allStreams.filter(stream => 
+      stream.name.toLowerCase().includes(query.toLowerCase())
+    );
+  }
+
+  // Get all channels and streams with metadata
+  async getAllChannelsAndStreams(vhost: string, app: string): Promise<any> {
+    const [regularStreams, scheduledChannels, multiplexChannels] = await Promise.all([
+      this.getStreams(vhost, app).catch(() => []),
+      this.getScheduledChannels(vhost, app).catch(() => []),
+      this.getMultiplexChannels(vhost, app).catch(() => [])
+    ]);
+
+    return {
+      regular: regularStreams,
+      scheduled: scheduledChannels,
+      multiplex: multiplexChannels,
+      total: regularStreams.length + scheduledChannels.length + multiplexChannels.length
     };
   }
 }
