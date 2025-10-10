@@ -51,10 +51,6 @@ export const RecordingManagement: React.FC = () => {
   const { omeHost, omePort, omeUsername, omePassword, currentVHost, currentApp } = useStore();
   const omeApi = useMemo(() => new OMEApiService(omeHost, omePort, omeUsername, omePassword), [omeHost, omePort, omeUsername, omePassword]);
 
-  useEffect(() => {
-    loadRecordings();
-  }, [loadRecordings]);
-
   const loadRecordings = useCallback(async () => {
     if (!currentVHost || !currentApp) return;
     
@@ -70,7 +66,11 @@ export const RecordingManagement: React.FC = () => {
     }
   }, [currentVHost, currentApp, omeApi]);
 
-  const handleStartRecording = async (values: { id: string; streamName: string; variantNames?: string; outputPath: string; format: string; duration?: number; scheduleStart?: string; scheduleEnd?: string }) => {
+  useEffect(() => {
+    loadRecordings();
+  }, [loadRecordings]);
+
+  const handleStartRecording = async (values: { id: string; streamName: string; variantNames?: string; outputPath?: string; format?: string; duration?: number; scheduleStart?: string; scheduleEnd?: string; interval?: number; filePath?: string; infoPath?: string; schedule?: string; metadata?: string; segmentationRule?: string }) => {
     if (!currentVHost || !currentApp) {
       message.error('Please select a virtual host and application');
       return;
@@ -88,7 +88,7 @@ export const RecordingManagement: React.FC = () => {
         infoPath: values.infoPath,
         schedule: values.schedule,
         metadata: values.metadata,
-        segmentationRule: values.segmentationRule,
+        segmentationRule: values.segmentationRule as 'discontinuity' | 'continuity' | undefined,
       };
 
       await omeApi.startRecording(currentVHost, currentApp, recordData);
@@ -188,7 +188,7 @@ export const RecordingManagement: React.FC = () => {
             <Progress
               percent={Math.round(progress)}
               size="small"
-              status={record.state === 'error' ? 'exception' : 'active'}
+              status={'active'}
             />
           );
         }
@@ -369,7 +369,7 @@ export const RecordingManagement: React.FC = () => {
           form={form}
           layout="vertical"
           onFinish={handleStartRecording}
-          initialValues={editingRecording}
+          initialValues={editingRecording || {}}
         >
           <Tabs defaultActiveKey="basic">
             <TabPane tab="Basic" key="basic">

@@ -5,13 +5,14 @@ import {
   Tag,
   Button,
   Space,
-  Alert,
   Typography,
   Row,
   Col,
   Statistic,
   Progress,
   Divider,
+  message,
+  Alert,
 } from 'antd';
 import {
   CheckCircleOutlined,
@@ -61,7 +62,7 @@ export const StreamProfileValidator: React.FC = () => {
 
   const validateStreamProfile = async () => {
     if (!currentStream) {
-      Alert.warning('No stream selected for validation');
+      message.warning('No stream selected for validation');
       return;
     }
 
@@ -127,7 +128,7 @@ export const StreamProfileValidator: React.FC = () => {
       
     } catch (error) {
       console.error('Failed to validate stream profile:', error);
-      Alert.error('Failed to fetch stream information. Check OME connection.');
+      message.error('Failed to fetch stream information. Check OME connection.');
     } finally {
       setLoading(false);
     }

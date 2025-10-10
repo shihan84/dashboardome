@@ -9,11 +9,12 @@ import {
   Table,
   Space,
   Typography,
-  Alert,
   Popconfirm,
   Tag,
   Row,
   Col,
+  message,
+  Alert,
 } from 'antd';
 import {
   ClockCircleOutlined,
@@ -51,9 +52,10 @@ export const SCTE35Scheduler: React.FC = () => {
     const stored = localStorage.getItem('scheduled-scte35-events');
     if (stored) {
       try {
-        const events = JSON.parse(stored).map((event: any) => ({
+        const events: ScheduledEvent[] = JSON.parse(stored).map((event: any) => ({
           ...event,
           scheduledTime: new Date(event.scheduledTime),
+          status: (event.status as 'scheduled' | 'executed' | 'cancelled')
         }));
         setScheduledEvents(events);
       } catch (error) {
@@ -81,16 +83,16 @@ export const SCTE35Scheduler: React.FC = () => {
         status: 'scheduled' as const,
     };
 
-    const updatedEvents = [...scheduledEvents, newEvent];
+    const updatedEvents: ScheduledEvent[] = [...scheduledEvents, newEvent];
     saveScheduledEvents(updatedEvents);
 
     form.resetFields();
-    Alert.success('Event scheduled successfully!');
+    message.success('Event scheduled successfully!');
   };
 
   const handleCancel = (id: string) => {
     const updatedEvents = scheduledEvents.map(event =>
-      event.id === id ? { ...event, status: 'cancelled' } : event
+      event.id === id ? { ...event, status: 'cancelled' as const } : event
     );
     saveScheduledEvents(updatedEvents);
   };
@@ -193,7 +195,7 @@ export const SCTE35Scheduler: React.FC = () => {
       title: 'Actions',
       key: 'actions',
       width: 150,
-      render: (_, record: ScheduledEvent) => (
+      render: (_: unknown, record: ScheduledEvent) => (
         <Space>
           {record.status === 'scheduled' && (
             <Popconfirm

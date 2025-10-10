@@ -571,4 +571,99 @@ export class OMEApiService {
       ...config
     };
   }
+
+  // ===== SCHEDULED CHANNELS API =====
+  
+  // Get all scheduled channels
+  async getScheduledChannels(vhost: string, app: string): Promise<string[]> {
+    const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/scheduledChannels`, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Get scheduled channel details
+  async getScheduledChannel(vhost: string, app: string, streamName: string): Promise<any> {
+    const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/scheduledChannels/${streamName}`, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Create scheduled channel
+  async createScheduledChannel(vhost: string, app: string, channelData: any): Promise<any> {
+    const response = await axios.post(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/scheduledChannels`, channelData, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Update scheduled channel
+  async updateScheduledChannel(vhost: string, app: string, streamName: string, channelData: any): Promise<any> {
+    const response = await axios.patch(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/scheduledChannels/${streamName}`, channelData, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Delete scheduled channel
+  async deleteScheduledChannel(vhost: string, app: string, streamName: string): Promise<any> {
+    const response = await axios.delete(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/scheduledChannels/${streamName}`, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // ===== MULTIPLEX CHANNELS API =====
+  
+  // Get all multiplex channels
+  async getMultiplexChannels(vhost: string, app: string): Promise<string[]> {
+    const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/multiplexChannels`, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Get multiplex channel details
+  async getMultiplexChannel(vhost: string, app: string, streamName: string): Promise<any> {
+    const response = await axios.get(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/multiplexChannels/${streamName}`, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Create multiplex channel
+  async createMultiplexChannel(vhost: string, app: string, channelData: any): Promise<any> {
+    const response = await axios.post(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/multiplexChannels`, channelData, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // Delete multiplex channel
+  async deleteMultiplexChannel(vhost: string, app: string, streamName: string): Promise<any> {
+    const response = await axios.delete(`${this.baseUrl}/vhosts/${vhost}/apps/${app}/multiplexChannels/${streamName}`, this.getRequestConfig());
+    return response.data.response;
+  }
+
+  // ===== STREAM SEARCH AND FILTERING =====
+  
+  // Search streams across all types
+  async searchStreams(vhost: string, app: string, query: string): Promise<any> {
+    const [regularStreams, scheduledChannels, multiplexChannels] = await Promise.all([
+      this.getStreams(vhost, app).catch(() => []),
+      this.getScheduledChannels(vhost, app).catch(() => []),
+      this.getMultiplexChannels(vhost, app).catch(() => [])
+    ]);
+
+    const allStreams = [
+      ...regularStreams.map((stream: any) => ({ ...stream, type: 'regular' })),
+      ...scheduledChannels.map((name: string) => ({ name, type: 'scheduled' })),
+      ...multiplexChannels.map((name: string) => ({ name, type: 'multiplex' }))
+    ];
+
+    return allStreams.filter(stream => 
+      stream.name.toLowerCase().includes(query.toLowerCase())
+    );
+  }
+
+  // Get all channels and streams with metadata
+  async getAllChannelsAndStreams(vhost: string, app: string): Promise<any> {
+    const [regularStreams, scheduledChannels, multiplexChannels] = await Promise.all([
+      this.getStreams(vhost, app).catch(() => []),
+      this.getScheduledChannels(vhost, app).catch(() => []),
+      this.getMultiplexChannels(vhost, app).catch(() => [])
+    ]);
+
+    return {
+      regular: regularStreams,
+      scheduled: scheduledChannels,
+      multiplex: multiplexChannels,
+      total: regularStreams.length + scheduledChannels.length + multiplexChannels.length
+    };
+  }
 }

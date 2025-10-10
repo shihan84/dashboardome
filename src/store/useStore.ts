@@ -24,7 +24,7 @@ interface AppState {
   wsConnection: WebSocket | null;
   
   // Actions
-  addEvent: (event: Omit<SCTE35Event, 'id' | 'timestamp'>) => void;
+  addEvent: (event: Omit<SCTE35Event, 'id' | 'timestamp'>) => string;
   updateEventStatus: (id: string, status: SCTE35Event['status']) => void;
   setOMEConnection: (host: string, port: number, username?: string, password?: string) => void;
   setCurrentStream: (stream: OMEStream | null) => void;
@@ -64,6 +64,8 @@ export const useStore = create<AppState>()(
           events: [...state.events, newEvent],
           lastEventId: eventData.eventId,
         }));
+
+        return newEvent.id;
       },
 
       updateEventStatus: (id, status) => {

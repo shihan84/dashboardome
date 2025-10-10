@@ -885,3 +885,76 @@ export interface TranscodeWebhookResponse {
     };
   };
 }
+
+// ===== CHANNEL MANAGEMENT TYPES =====
+
+export interface ScheduledChannel {
+  name: string;
+  type: 'scheduled';
+  status: 'active' | 'inactive' | 'error';
+  scheduleFile?: string;
+  fallbackProgram?: {
+    type: 'file' | 'stream';
+    path?: string;
+    streamName?: string;
+  };
+  programs?: ScheduledProgram[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ScheduledProgram {
+  id: string;
+  name: string;
+  type: 'file' | 'stream';
+  path?: string;
+  streamName?: string;
+  startTime: Date;
+  duration: number; // in seconds
+  audioMap?: AudioMap[];
+  metadata?: Record<string, any>;
+}
+
+export interface AudioMap {
+  trackId: number;
+  language: string;
+  name: string;
+  codec: string;
+}
+
+export interface MultiplexChannel {
+  name: string;
+  type: 'multiplex';
+  status: 'active' | 'inactive' | 'error';
+  inputStreams: MultiplexInputStream[];
+  outputStream: {
+    name: string;
+    profiles: string[];
+  };
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface MultiplexInputStream {
+  name: string;
+  type: 'video' | 'audio' | 'data';
+  trackId?: number;
+  language?: string;
+  enabled: boolean;
+}
+
+export interface ChannelSearchResult {
+  name: string;
+  type: 'regular' | 'scheduled' | 'multiplex';
+  status?: string;
+  vhost?: string;
+  app?: string;
+  metadata?: any;
+}
+
+export interface ChannelManagement {
+  regular: OMEStream[];
+  scheduled: ScheduledChannel[];
+  multiplex: MultiplexChannel[];
+  total: number;
+}

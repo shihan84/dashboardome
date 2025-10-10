@@ -41,7 +41,7 @@ const { TabPane } = Tabs;
 const { Option } = Select;
 
 export const VHostManagement: React.FC = () => {
-  const [vhosts, setVHosts] = useState<string[]>([]);
+  const [vhosts, setVHosts] = useState<any[]>([]);
   const [vhostDetails, setVHostDetails] = useState<OMEVHostDetailed[]>([]);
   const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);

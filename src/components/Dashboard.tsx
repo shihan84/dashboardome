@@ -25,6 +25,7 @@ import {
   VideoCameraOutlined,
   SendOutlined,
   BarChartOutlined,
+  NodeIndexOutlined,
 } from '@ant-design/icons';
 import { ComplianceInjectionForm } from './ComplianceInjectionForm';
 import { StreamProfileValidator } from './StreamProfileValidator';
@@ -36,6 +37,7 @@ import { VHostManagement } from './VHostManagement';
 import { RecordingManagement } from './RecordingManagement';
 import { PushPublishingManagement } from './PushPublishingManagement';
 import { StatisticsDashboard } from './StatisticsDashboard';
+import { ChannelManagement } from './ChannelManagement';
 import { Footer } from './Footer';
 import { useStore } from '../store/useStore';
 import { OMEApiService } from '../services/omeApi';
@@ -63,11 +65,6 @@ export const Dashboard: React.FC = () => {
 
   const omeApi = useMemo(() => new OMEApiService(omeHost, omePort, omeUsername, omePassword), [omeHost, omePort, omeUsername, omePassword]);
 
-  useEffect(() => {
-    checkConnection();
-    loadServerStats();
-  }, [omeHost, omePort, checkConnection, loadServerStats]);
-
   const checkConnection = useCallback(async () => {
     setConnectionStatus('checking');
     try {
@@ -89,6 +86,11 @@ export const Dashboard: React.FC = () => {
       setLoading(false);
     }
   }, [omeApi]);
+
+  useEffect(() => {
+    checkConnection();
+    loadServerStats();
+  }, [omeHost, omePort, checkConnection, loadServerStats]);
 
   const menuItems = [
     {
@@ -120,6 +122,11 @@ export const Dashboard: React.FC = () => {
       key: 'config',
       icon: <CodeOutlined />,
       label: 'Config Generator',
+    },
+    {
+      key: 'channels',
+      icon: <NodeIndexOutlined />,
+      label: 'Channel Management',
     },
     {
       key: 'vhosts',
@@ -283,6 +290,8 @@ export const Dashboard: React.FC = () => {
         return <SCTE35Scheduler />;
       case 'config':
         return <ConfigurationGenerator />;
+      case 'channels':
+        return <ChannelManagement />;
       case 'vhosts':
         return <VHostManagement />;
       case 'recording':
