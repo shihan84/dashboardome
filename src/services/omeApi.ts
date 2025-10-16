@@ -25,9 +25,36 @@ export class OMEApiService {
 
   constructor(host: string, port: number, username: string = '', password: string = '') {
     this.baseUrl = `http://${host}:${port}/v1`;
-    // OvenMediaEngine uses just the token as username, no password needed
-    // OME expects Basic auth with just the token (no colon)
-    this.auth = username ? btoa(username) : '';
+    // Determine credentials. If none provided, try to read from localStorage (browser env only)
+    let resolvedUsername = username;
+    let resolvedPassword = password;
+
+    if (!resolvedUsername && typeof window !== 'undefined') {
+      try {
+        const storedToken = window.localStorage.getItem('omeAuthToken') || window.localStorage.getItem('omeToken') || '';
+        const storedUsername = window.localStorage.getItem('omeUsername') || '';
+        const storedPassword = window.localStorage.getItem('omePassword') || '';
+
+        if (storedToken) {
+          // Many OME setups use a single admin token. Use it as username with empty password.
+          resolvedUsername = storedToken;
+          resolvedPassword = '';
+        } else if (storedUsername || storedPassword) {
+          resolvedUsername = storedUsername;
+          resolvedPassword = storedPassword;
+        }
+      } catch {
+        // ignore storage errors
+      }
+    }
+
+    // Build Basic auth header. Basic requires base64 of "username:password".
+    // For token-only auth, send "token:" (empty password).
+    if (resolvedUsername || resolvedPassword) {
+      this.auth = btoa(`${resolvedUsername}:${resolvedPassword ?? ''}`);
+    } else {
+      this.auth = '';
+    }
   }
 
   private getHeaders() {

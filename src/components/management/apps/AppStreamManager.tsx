@@ -141,6 +141,33 @@ const AppStreamManager: React.FC = () => {
     }
   };
 
+// Persistence helpers to keep app/stream definitions across page refreshes
+const PERSISTENCE_STORAGE_KEY = 'appStreamManager.persistedApps';
+
+function loadPersistedStreamsByApp(): Record<string, StreamConfig[]> {
+  try {
+    const raw = localStorage.getItem(PERSISTENCE_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed === 'object') return parsed as Record<string, StreamConfig[]>;
+  } catch {
+    // ignore parse errors
+  }
+  return {};
+}
+
+function savePersistedStreams(apps: AppConfig[]) {
+  const byApp: Record<string, StreamConfig[]> = {};
+  for (const app of apps) {
+    byApp[app.name] = app.streams || [];
+  }
+  try {
+    localStorage.setItem(PERSISTENCE_STORAGE_KEY, JSON.stringify(byApp));
+  } catch {
+    // storage might be unavailable; fail silently
+  }
+}
+
   useEffect(() => {
     loadApps();
   }, []);
@@ -164,11 +191,15 @@ const AppStreamManager: React.FC = () => {
     try {
       if (editingApp) {
         // Update existing app
-        setApps(prev => prev.map(app => 
-          app.name === editingApp.name 
-            ? { ...app, ...values }
-            : app
-        ));
+        setApps(prev => {
+          const next = prev.map(app => 
+            app.name === editingApp.name 
+              ? { ...app, ...values }
+              : app
+          );
+          savePersistedStreams(next);
+          return next;
+        });
         message.success('Application updated successfully!');
       } else {
         // Create new app
@@ -178,7 +209,11 @@ const AppStreamManager: React.FC = () => {
           outputProfiles: [],
           customParameters: {}
         };
-        setApps(prev => [...prev, newApp]);
+        setApps(prev => {
+          const next = [...prev, newApp];
+          savePersistedStreams(next);
+          return next;
+        });
         message.success('Application created successfully!');
       }
       setModalVisible(false);
@@ -208,26 +243,29 @@ const AppStreamManager: React.FC = () => {
     
     setLoading(true);
     try {
-      setApps(prev => prev.map(app => {
-        if (app.name === selectedApp) {
-          if (editingStream) {
-            // Update existing stream
-            return {
-              ...app,
-              streams: app.streams.map(stream => 
-                stream.name === editingStream.name ? { ...stream, ...values } : stream
-              )
-            };
-          } else {
+      setApps(prev => {
+        const next = prev.map(app => {
+          if (app.name === selectedApp) {
+            if (editingStream) {
+              // Update existing stream
+              return {
+                ...app,
+                streams: app.streams.map(stream => 
+                  stream.name === editingStream.name ? { ...stream, ...values } : stream
+                )
+              };
+            }
             // Add new stream
             return {
               ...app,
               streams: [...app.streams, { ...values, parameters: {} }]
             };
           }
-        }
-        return app;
-      }));
+          return app;
+        });
+        savePersistedStreams(next);
+        return next;
+      });
       
       message.success(`Stream ${editingStream ? 'updated' : 'created'} successfully!`);
       setStreamModalVisible(false);
@@ -237,6 +275,30 @@ const AppStreamManager: React.FC = () => {
       setLoading(false);
     }
   };
+
+  // Merge persisted streams into the freshly loaded apps list
+  // so streams survive a full page refresh
+  useEffect(() => {
+    // only attempt merge right after initial loadApps populated state
+    // and whenever apps change from an external refresh
+    setApps(prev => {
+      if (!prev || prev.length === 0) return prev;
+      const persisted = loadPersistedStreamsByApp();
+      if (!persisted || Object.keys(persisted).length === 0) return prev;
+
+      const merged = prev.map(app => {
+        const persistedStreams = persisted[app.name] || [];
+        if (persistedStreams.length === 0) return app;
+        // prefer API streams, append persisted ones that are not present
+        const existingNames = new Set((app.streams || []).map(s => s.name));
+        const toAppend = persistedStreams.filter(s => !existingNames.has(s.name));
+        if (toAppend.length === 0) return app;
+        return { ...app, streams: [...(app.streams || []), ...toAppend] };
+      });
+
+      return merged;
+    });
+  }, [loadApps]);
 
   const handleDeleteStream = (appName: string, streamName: string) => {
     setApps(prev => prev.map(app => {

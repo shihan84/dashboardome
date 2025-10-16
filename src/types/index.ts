@@ -29,22 +29,57 @@ export interface ComplianceCheck {
 
 // OME API Types
 export interface OMEStream {
-  id: string;
+  id?: string;
   name: string;
-  state: 'ready' | 'streaming' | 'stopped';
-  profile: StreamProfile;
+  state?: 'ready' | 'streaming' | 'stopped' | 'started' | 'inactive' | 'error';
+  sourceType?: string;
+  bitrate?: number;
+  connections?: {
+    total?: number;
+    webrtc?: number;
+    hls?: number;
+    dash?: number;
+  };
+  video?: {
+    codec?: string;
+    resolution?: string;
+    framerate?: number;
+    bitrate?: number;
+  };
+  audio?: {
+    codec?: string;
+    sampleRate?: number;
+    channels?: number;
+    bitrate?: number;
+  };
+  profile?: StreamProfile;
 }
 
 export interface OMEApplication {
-  id: string;
+  id?: string;
   name: string;
-  streams: OMEStream[];
+  type?: string;
+  providers?: {
+    rtmp?: boolean;
+    srt?: boolean;
+    webrtc?: boolean;
+    rtsp?: boolean;
+  };
+  publishers?: {
+    llhls?: boolean;
+    webrtc?: boolean;
+    hls?: boolean;
+    dash?: boolean;
+  };
+  streams?: OMEStream[];
 }
 
 export interface OMEVHost {
-  id: string;
+  id?: string;
   name: string;
-  applications: OMEApplication[];
+  domain?: string;
+  tls?: boolean;
+  applications?: OMEApplication[];
 }
 
 // Configuration Generator

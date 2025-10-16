@@ -32,7 +32,6 @@ import {
   CalendarOutlined,
   ClockCircleOutlined,
   FileOutlined,
-  StreamOutlined,
   SettingOutlined,
   ReloadOutlined,
   UploadOutlined,
@@ -40,7 +39,7 @@ import {
 } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import dayjs, { Dayjs } from 'dayjs';
-import { omeApi } from '../../../services/omeApi';
+import { OMEApiService } from '../../../services/omeApi';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -366,7 +365,7 @@ const ChannelScheduler: React.FC = () => {
         <Space wrap>
           {items.map((item, index) => (
             <Tag key={index} color={item.type === 'stream' ? 'green' : 'blue'}>
-              {item.type === 'stream' ? <StreamOutlined /> : <FileOutlined />}
+              {item.type === 'stream' ? <PlayCircleOutlined /> : <FileOutlined />}
               {item.name}
             </Tag>
           ))}
@@ -476,7 +475,7 @@ const ChannelScheduler: React.FC = () => {
                     title="Status"
                     value={selectedChannelData.status}
                     valueStyle={{ color: getStatusColor(selectedChannelData.status) === 'green' ? '#3f8600' : '#cf1322' }}
-                    prefix={<StreamOutlined />}
+                    prefix={<PlayCircleOutlined />}
                   />
                 </Col>
               </Row>
@@ -534,10 +533,10 @@ const ChannelScheduler: React.FC = () => {
                   <Card size="small" title="Content Sources">
                     <Space direction="vertical">
                       <Tag icon={<FileOutlined />} color="blue">Local MP4 Files</Tag>
-                      <Tag icon={<StreamOutlined />} color="green">RTMP Streams</Tag>
-                      <Tag icon={<StreamOutlined />} color="green">HLS Streams</Tag>
-                      <Tag icon={<StreamOutlined />} color="green">SRT Streams</Tag>
-                      <Tag icon={<StreamOutlined />} color="orange">External URLs</Tag>
+                      <Tag icon={<PlayCircleOutlined />} color="green">RTMP Streams</Tag>
+                      <Tag icon={<PlayCircleOutlined />} color="green">HLS Streams</Tag>
+                      <Tag icon={<PlayCircleOutlined />} color="green">SRT Streams</Tag>
+                      <Tag icon={<PlayCircleOutlined />} color="orange">External URLs</Tag>
                     </Space>
                   </Card>
                 </Col>

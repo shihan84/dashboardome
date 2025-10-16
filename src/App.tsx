@@ -1,6 +1,7 @@
 import React from 'react';
 import { ConfigProvider } from 'antd';
-import { Dashboard, ErrorBoundary } from './components';
+import { ErrorBoundary } from './components';
+import ProfessionalDashboard from './components/core/layout/ProfessionalDashboard';
 import './App.css';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       }}
     >
       <ErrorBoundary>
-        <Dashboard />
+        <ProfessionalDashboard />
       </ErrorBoundary>
     </ConfigProvider>
   );

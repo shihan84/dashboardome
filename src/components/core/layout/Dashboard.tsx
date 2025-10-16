@@ -47,7 +47,6 @@ import {
   RecordingManager,
   PushPublishingManager,
   StatisticsDashboard,
-  ChannelManagement,
   SimpleChannelScheduler,
   AppStreamManager,
   AccessControl,

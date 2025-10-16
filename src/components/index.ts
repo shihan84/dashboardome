@@ -22,5 +22,8 @@ export * from './recording';
 // Publishing Components
 export * from './publishing';
 
+// Testing Components
+export * from './testing';
+
 // Utility Components
 export * from './utils';

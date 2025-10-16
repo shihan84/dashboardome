@@ -34,7 +34,6 @@ import {
   CalendarOutlined,
   ClockCircleOutlined,
   FileOutlined,
-  StreamOutlined,
   SettingOutlined,
   ReloadOutlined,
   UploadOutlined,
@@ -47,7 +46,8 @@ import {
 } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import dayjs, { Dayjs } from 'dayjs';
-import { scheduleUpdateService, ScheduleUpdate, EmergencyContent } from '../../../services/scheduleUpdateService';
+import { scheduleUpdateService } from '../../../services/scheduleUpdateService';
+import type { ScheduleUpdate, EmergencyContent } from '../../../services/scheduleUpdateService';
 
 const { Option } = Select;
 const { TextArea } = Input;
