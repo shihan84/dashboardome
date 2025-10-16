@@ -44,7 +44,7 @@ import {
   ConfigurationGenerator,
   ConnectionSettings,
   VHostManagement,
-  RecordingManager,
+  DVRRecordingManager,
   PushPublishingManager,
   StatisticsDashboard,
   SimpleChannelScheduler,
@@ -477,7 +477,7 @@ export const Dashboard: React.FC = () => {
       
       // CONTENT & MEDIA
       case 'recording':
-        return <RecordingManager />;
+        return <DVRRecordingManager />;
       case 'publishing':
         return <PushPublishingManager />;
       case 'thumbnails':

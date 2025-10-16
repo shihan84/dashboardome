@@ -1,1 +1,1 @@
-export { RecordingManager } from './RecordingManager';
+export { RecordingManager as LegacyRecordingManager } from './RecordingManager';

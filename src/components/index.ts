@@ -19,8 +19,7 @@ export * from './compliance';
 // Recording Components
 export * from './recording';
 
-// Publishing Components
-export * from './publishing';
+// Publishing Components (moved to streaming)
 
 // Testing Components
 export * from './testing';
