@@ -42,16 +42,26 @@ export class OMEApiService {
         } else if (storedUsername || storedPassword) {
           resolvedUsername = storedUsername;
           resolvedPassword = storedPassword;
+        } else {
+          // Fallback: Use default OME token if no credentials are set
+          resolvedUsername = 'ovenmediaengine';
+          resolvedPassword = '';
         }
       } catch {
         // ignore storage errors
       }
     }
 
-    // Build Basic auth header. Basic requires base64 of "username:password".
-    // For token-only auth, send "token:" (empty password).
-    if (resolvedUsername || resolvedPassword) {
-      this.auth = btoa(`${resolvedUsername}:${resolvedPassword ?? ''}`);
+    // Build Basic auth header for OME.
+    // OME's AccessToken is a plaintext credential string that should be base64 encoded directly
+    // (not in username:password format as per standard Basic Auth).
+    // Reference: https://github.com/AirenSoft/OvenMediaEngine/blob/master/docs/rest-api/README.md
+    if (resolvedUsername) {
+      // Use the token directly (OME expects just the token, not username:password)
+      this.auth = btoa(resolvedUsername);
+    } else if (resolvedPassword) {
+      // Fallback: if only password is provided, use it as token
+      this.auth = btoa(resolvedPassword);
     } else {
       this.auth = '';
     }

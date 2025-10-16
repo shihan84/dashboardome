@@ -234,14 +234,17 @@ const ProfessionalDashboard: React.FC = () => {
       
       if (vhostsResponse.success) {
         for (const vhost of vhostsResponse.data) {
-          const appsResponse = await omeApi.getApplications(vhost.name);
+          const vhostName = typeof vhost === 'string' ? vhost : vhost.name;
+          const appsResponse = await omeApi.getApplications(vhostName);
           if (appsResponse.success) {
             for (const app of appsResponse.data) {
-              const streamsResponse = await omeApi.getStreams(vhost.name, app.name);
+              const appName = typeof app === 'string' ? app : app.name;
+              const streamsResponse = await omeApi.getStreams(vhostName, appName);
               if (streamsResponse.success) {
                 totalStreams += streamsResponse.data.length;
                 for (const stream of streamsResponse.data) {
-                  const streamDetails = await omeApi.getStreamDetailed(vhost.name, app.name, stream.name);
+                  const streamName = typeof stream === 'string' ? stream : stream.name;
+                  const streamDetails = await omeApi.getStreamDetailed(vhostName, appName, streamName);
                   totalConnections += streamDetails.connections?.total || 0;
                 }
               }
@@ -279,15 +282,18 @@ const ProfessionalDashboard: React.FC = () => {
       const vhostsResponse = await omeApi.getVHosts();
       if (vhostsResponse.success) {
         for (const vhost of vhostsResponse.data) {
-          const appsResponse = await omeApi.getApplications(vhost.name);
+          const vhostName = typeof vhost === 'string' ? vhost : vhost.name;
+          const appsResponse = await omeApi.getApplications(vhostName);
           if (appsResponse.success) {
             for (const app of appsResponse.data) {
-              const streamsResponse = await omeApi.getStreams(vhost.name, app.name);
+              const appName = typeof app === 'string' ? app : app.name;
+              const streamsResponse = await omeApi.getStreams(vhostName, appName);
               if (streamsResponse.success) {
                 for (const stream of streamsResponse.data) {
-                  const streamDetails = await omeApi.getStreamDetailed(vhost.name, app.name, stream.name);
+                  const streamName = typeof stream === 'string' ? stream : stream.name;
+                  const streamDetails = await omeApi.getStreamDetailed(vhostName, appName, streamName);
                   const streamInfo: StreamInfo = {
-                    name: stream.name,
+                    name: streamName,
                     status: streamDetails.state === 'started' ? 'active' : 'inactive',
                     viewers: streamDetails.connections?.total || 0,
                     bitrate: streamDetails.bitrate || 0,
