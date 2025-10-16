@@ -47,7 +47,7 @@ export const useStore = create<AppState>()(
       omePassword: '',
       isConnected: false,
       currentStream: null,
-      currentVHost: 'default',
+      currentVHost: 'test',
       currentApp: 'app',
       complianceChecks: [],
       wsConnection: null,

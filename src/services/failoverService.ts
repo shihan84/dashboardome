@@ -507,17 +507,7 @@ failoverService.addStreamSource({
   errorCount: 0
 });
 
-failoverService.addStreamSource({
-  id: 'external_hls',
-  name: 'External HLS Stream',
-  type: 'hls',
-  url: 'https://cdn.itassist.one/jd/mqtv/index.m3u8',
-  priority: 1,
-  isActive: true,
-  lastChecked: new Date(),
-  healthStatus: 'unknown',
-  errorCount: 0
-});
+// External HLS relay removed - using only published streams
 
 // Start monitoring
 failoverService.startMonitoring();

@@ -14,12 +14,12 @@
 
     <!-- 24/7 Mixed Content Channel with Advanced Failover -->
     <Program name="mixed_content" scheduled="2025-10-15T00:00:00.000+00:00" repeat="true">
-        <!-- Primary: External HLS Stream -->
-        <Item url="stream://default/live/external_hls" duration="3600000" />
-        <!-- Secondary: Local RTMP Stream -->
+        <!-- Primary: Local RTMP Stream -->
         <Item url="stream://default/live/live" duration="3600000" />
-        <!-- Tertiary: Local Content -->
+        <!-- Secondary: Local Content -->
         <Item url="file://morning_content.mp4" start="0" duration="3600000" />
+        <!-- Tertiary: Fallback Content -->
+        <Item url="file://fallback.mp4" start="0" duration="3600000" />
     </Program>
 
     <!-- News Hour (Every 2 hours) -->

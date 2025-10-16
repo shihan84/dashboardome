@@ -33,8 +33,8 @@
         <Item url="file://news_update.mp4" start="0" duration="300000" />
     </Program>
 
-    <!-- External HLS Stream Integration -->
-    <Program name="external_stream" scheduled="2025-10-15T14:00:00.000+00:00" repeat="true">
-        <Item url="stream://default/live/external_hls" duration="7200000" />
+    <!-- Additional Music Content -->
+    <Program name="music_special" scheduled="2025-10-15T14:00:00.000+00:00" repeat="true">
+        <Item url="file://music_special.mp4" start="0" duration="7200000" />
     </Program>
 </Schedule>

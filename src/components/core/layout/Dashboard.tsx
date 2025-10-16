@@ -33,6 +33,7 @@ import {
   ApiOutlined,
   ShareAltOutlined,
   PauseCircleOutlined,
+  CalendarOutlined,
 } from '@ant-design/icons';
 import { Footer } from './Footer';
 import { ConnectionTest } from '../../utils/testing/ConnectionTest';
@@ -47,6 +48,8 @@ import {
   PushPublishingManager,
   StatisticsDashboard,
   ChannelManagement,
+  SimpleChannelScheduler,
+  AppStreamManager,
   AccessControl,
   TLSStatus,
   IngressHelpers,
@@ -64,12 +67,13 @@ import {
   HLSManager,
   TranscodeWebhook,
   P2PManager,
+  QuickStartWizard,
 } from '../../index';
 
 const { Header, Sider, Content } = Layout;
 const { Title, Text } = Typography;
 
-type DashboardTab = 'overview' | 'streaming-group' | 'channels' | 'streams' | 'ingress' | 'transcoding-group' | 'transcoder' | 'abr-manager' | 'webhooks' | 'players-group' | 'player-manager' | 'encoder-manager' | 'demo-manager' | 'output-group' | 'thumbnails' | 'hls' | 'p2p' | 'recording-group' | 'recording' | 'publishing' | 'compliance-group' | 'scte35' | 'validator' | 'infrastructure-group' | 'vhosts' | 'cluster' | 'security-group' | 'access' | 'tls' | 'monitoring-group' | 'statistics' | 'realtime-stats' | 'webrtc-monitor' | 'config-group' | 'config' | 'settings';
+type DashboardTab = 'overview' | 'streaming-group' | 'quick-start' | 'channel-scheduler' | 'app-stream-manager' | 'streams' | 'content-group' | 'recording' | 'publishing' | 'thumbnails' | 'compliance-group' | 'scte35' | 'validator' | 'infrastructure-group' | 'vhosts' | 'access' | 'tls' | 'monitoring-group' | 'statistics' | 'realtime-stats' | 'webrtc-monitor' | 'config-group' | 'transcoder' | 'config' | 'settings';
 
 export const Dashboard: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<DashboardTab>('overview');
@@ -144,110 +148,43 @@ export const Dashboard: React.FC = () => {
     {
       key: 'overview',
       icon: <DashboardOutlined />,
-      label: 'Overview',
+      label: 'Dashboard Overview',
     },
     
-    // STREAMING & CHANNELS
+    // STREAMING MANAGEMENT (Consolidated)
     {
       key: 'streaming-group',
       icon: <PlayCircleOutlined />,
-      label: 'Streaming & Channels',
+      label: 'Streaming Management',
       children: [
         {
-          key: 'channels',
-          icon: <NodeIndexOutlined />,
-          label: 'Channel Management',
+          key: 'quick-start',
+          icon: <RocketOutlined />,
+          label: 'Quick Start Wizard',
+        },
+        {
+          key: 'app-stream-manager',
+          icon: <CloudServerOutlined />,
+          label: 'Create & Manage Streams',
+        },
+        {
+          key: 'channel-scheduler',
+          icon: <CalendarOutlined />,
+          label: 'Channel Scheduler',
         },
         {
           key: 'streams',
           icon: <PlayCircleOutlined />,
-          label: 'Stream Monitor',
-        },
-        {
-          key: 'ingress',
-          icon: <NodeIndexOutlined />,
-          label: 'Ingress & Playback',
+          label: 'Live Stream Monitor',
         },
       ],
     },
     
-    // TRANSCODING & ABR
+    // CONTENT & MEDIA
     {
-      key: 'transcoding-group',
-      icon: <CodeOutlined />,
-      label: 'Transcoding & ABR',
-      children: [
-        {
-          key: 'transcoder',
-          icon: <CodeOutlined />,
-          label: 'ABR & Transcoder',
-        },
-        {
-          key: 'abr-manager',
-          icon: <BarChartOutlined />,
-          label: 'ABR Manager',
-        },
-        {
-          key: 'webhooks',
-          icon: <ApiOutlined />,
-          label: 'Transcode Webhooks',
-        },
-      ],
-    },
-    
-    // PLAYERS & ENCODERS
-    {
-      key: 'players-group',
+      key: 'content-group',
       icon: <VideoCameraOutlined />,
-      label: 'Players & Encoders',
-      children: [
-        {
-          key: 'player-manager',
-          icon: <PlayCircleOutlined />,
-          label: 'Player Manager',
-        },
-        {
-          key: 'encoder-manager',
-          icon: <VideoCameraOutlined />,
-          label: 'Encoder Manager',
-        },
-        {
-          key: 'demo-manager',
-          icon: <RocketOutlined />,
-          label: 'Demo Manager',
-        },
-      ],
-    },
-    
-    // OUTPUT MANAGEMENT
-    {
-      key: 'output-group',
-      icon: <ThunderboltOutlined />,
-      label: 'Output Management',
-      children: [
-        {
-          key: 'thumbnails',
-          icon: <VideoCameraOutlined />,
-          label: 'Thumbnail Manager',
-        },
-        {
-          key: 'hls',
-          icon: <ThunderboltOutlined />,
-          label: 'HLS Manager',
-        },
-        {
-          key: 'p2p',
-          icon: <ShareAltOutlined />,
-          label: 'P2P Manager',
-        },
-      ],
-    },
-    
-    // RECORDING & PUBLISHING
-    {
-      key: 'recording-group',
-      icon: <VideoCameraOutlined />,
-      label: 'Recording & Publishing',
+      label: 'Content & Media',
       children: [
         {
           key: 'recording',
@@ -259,14 +196,19 @@ export const Dashboard: React.FC = () => {
           icon: <SendOutlined />,
           label: 'Push Publishing',
         },
+        {
+          key: 'thumbnails',
+          icon: <VideoCameraOutlined />,
+          label: 'Thumbnail Manager',
+        },
       ],
     },
     
-    // COMPLIANCE & SCTE-35
+    // COMPLIANCE & STANDARDS
     {
       key: 'compliance-group',
       icon: <CheckCircleOutlined />,
-      label: 'Compliance & SCTE-35',
+      label: 'Compliance & Standards',
       children: [
         {
           key: 'scte35',
@@ -281,31 +223,17 @@ export const Dashboard: React.FC = () => {
       ],
     },
     
-    // INFRASTRUCTURE
+    // INFRASTRUCTURE & SECURITY
     {
       key: 'infrastructure-group',
       icon: <CloudServerOutlined />,
-      label: 'Infrastructure',
+      label: 'Infrastructure & Security',
       children: [
         {
           key: 'vhosts',
           icon: <CloudServerOutlined />,
           label: 'Virtual Hosts & Apps',
         },
-        {
-          key: 'cluster',
-          icon: <CloudServerOutlined />,
-          label: 'Clustering',
-        },
-      ],
-    },
-    
-    // SECURITY & ACCESS
-    {
-      key: 'security-group',
-      icon: <SettingOutlined />,
-      label: 'Security & Access',
-      children: [
         {
           key: 'access',
           icon: <SettingOutlined />,
@@ -328,7 +256,7 @@ export const Dashboard: React.FC = () => {
         {
           key: 'statistics',
           icon: <BarChartOutlined />,
-          label: 'Statistics',
+          label: 'Statistics Dashboard',
         },
         {
           key: 'realtime-stats',
@@ -343,12 +271,17 @@ export const Dashboard: React.FC = () => {
       ],
     },
     
-    // CONFIGURATION
+    // ADVANCED CONFIGURATION
     {
       key: 'config-group',
       icon: <CodeOutlined />,
-      label: 'Configuration',
+      label: 'Advanced Configuration',
       children: [
+        {
+          key: 'transcoder',
+          icon: <CodeOutlined />,
+          label: 'Transcoding & ABR',
+        },
         {
           key: 'config',
           icon: <CodeOutlined />,
@@ -533,57 +466,33 @@ export const Dashboard: React.FC = () => {
       case 'overview':
         return renderOverview();
       
-      // STREAMING & CHANNELS
-      case 'channels':
-        return <ChannelManagement />;
+      // STREAMING MANAGEMENT
+      case 'quick-start':
+        return <QuickStartWizard />;
+      case 'app-stream-manager':
+        return <AppStreamManager />;
+      case 'channel-scheduler':
+        return <SimpleChannelScheduler />;
       case 'streams':
         return <StreamMonitor />;
-      case 'ingress':
-        return <IngressHelpers />;
       
-      // TRANSCODING & ABR
-      case 'transcoder':
-        return <ABRTranscoder />;
-      case 'abr-manager':
-        return <ABRManager />;
-      case 'webhooks':
-        return <TranscodeWebhook />;
-      
-      // PLAYERS & ENCODERS
-      case 'player-manager':
-        return <PlayerManager />;
-      case 'encoder-manager':
-        return <EncoderManager />;
-      case 'demo-manager':
-        return <DemoManager />;
-      
-      // OUTPUT MANAGEMENT
-      case 'thumbnails':
-        return <ThumbnailManager />;
-      case 'hls':
-        return <HLSManager />;
-      case 'p2p':
-        return <P2PManager />;
-      
-      // RECORDING & PUBLISHING
+      // CONTENT & MEDIA
       case 'recording':
         return <RecordingManager />;
       case 'publishing':
         return <PushPublishingManager />;
+      case 'thumbnails':
+        return <ThumbnailManager />;
       
-      // COMPLIANCE & SCTE-35
+      // COMPLIANCE & STANDARDS
       case 'scte35':
         return <SCTE35Manager />;
       case 'validator':
         return <StreamProfileValidator />;
       
-      // INFRASTRUCTURE
+      // INFRASTRUCTURE & SECURITY
       case 'vhosts':
         return <VHostManagement />;
-      case 'cluster':
-        return <ClusterManagement />;
-      
-      // SECURITY & ACCESS
       case 'access':
         return <AccessControl />;
       case 'tls':
@@ -597,7 +506,9 @@ export const Dashboard: React.FC = () => {
       case 'webrtc-monitor':
         return <WebRTCMonitor />;
       
-      // CONFIGURATION
+      // ADVANCED CONFIGURATION
+      case 'transcoder':
+        return <ABRTranscoder />;
       case 'config':
         return <ConfigurationGenerator />;
       case 'settings':
