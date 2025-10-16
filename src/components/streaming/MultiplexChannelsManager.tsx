@@ -27,7 +27,6 @@ import {
   Descriptions,
   Timeline,
   Slider,
-  ColorPicker,
   Upload,
   Drawer
 } from 'antd';

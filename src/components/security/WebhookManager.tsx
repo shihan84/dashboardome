@@ -26,7 +26,6 @@ import {
   Avatar,
   Descriptions,
   Timeline,
-  Code,
   Collapse,
   Upload,
   Drawer
