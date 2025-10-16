@@ -41,9 +41,9 @@ export const useStore = create<AppState>()(
       // Initial state
       events: [],
       lastEventId: 0,
-      omeHost: 'localhost',
+      omeHost: '192.168.1.102',
       omePort: 8081,
-      omeUsername: '',
+      omeUsername: 'ovenmediaengine',
       omePassword: '',
       isConnected: false,
       currentStream: null,

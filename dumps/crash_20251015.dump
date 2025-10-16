@@ -1,0 +1,520 @@
+***** Crash dump *****
+OvenMediaEngine v0.19.0 (629d738d) received signal 13 (SIGPIPE)
+- OS: Linux x86_64 - 5.15.0-157-generic, #167-Ubuntu SMP Wed Sep 17 21:35:53 UTC 2025
+- Time: 2025-10-15T19:32:29+0000, PID: 680831, TID: 682081 (FLT-rscl-t3)
+- Stack trace
+#0   /lib/x86_64-linux-gnu/libc.so.6     0x7f5b4b77e520 ? + 0x42520
+#1   /lib/x86_64-linux-gnu/libc.so.6     0x7f5b4b85092f write + 0x4f
+#2   /lib/x86_64-linux-gnu/libc.so.6     0x7f5b4b7c6eed _IO_file_write + 0x2d
+#3   /lib/x86_64-linux-gnu/libc.so.6     0x7f5b4b7c77d0 _IO_file_xsputn + 0x1d0
+#4   /lib/x86_64-linux-gnu/libc.so.6     0x7f5b4b7b36d2 ? + 0x776d2
+#5   /lib/x86_64-linux-gnu/libc.so.6     0x7f5b4b870d83 __fprintf_chk + 0xa3
+#6   OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine 0x558cf99517de ? + 0x2c97de
+#7   OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine 0x558cf995021d ? + 0x2c821d
+#8   OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine 0x558cf9a46213 ? + 0x3be213
+#9   OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine 0x558cf9a234d9 ? + 0x39b4d9
+#10  OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine 0x558cf9a25579 ? + 0x39d579
+#11  OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine 0x558cf9a25612 ? + 0x39d612
+#12  OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine 0x558cf9a34b69 ? + 0x3acb69
+#13  OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine 0x558cf9a4d45a ? + 0x3c545a
+#14  OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine 0x558cf9a4ec27 ? + 0x3c6c27
+#15  OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine 0x558cf9a7ce5b ? + 0x3f4e5b
+#16  OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine 0x558cf9a7e705 ? + 0x3f6705
+#17  /lib/x86_64-linux-gnu/libstdc++.so.6 0x7f5b4bb48253 ? + 0xdc253
+#18  /lib/x86_64-linux-gnu/libc.so.6     0x7f5b4b7d0ac3 ? + 0x94ac3
+#19  /lib/x86_64-linux-gnu/libc.so.6     0x7f5b4b8628c0 ? + 0x1268c0
+- Registers
+RAX   : 0xffffffffffffffe0     -32
+RBX   : 0xc7                   199
+RCX   : 0x7f5b4b85092f         140030085761327
+RDX   : 0xc7                   199
+RSI   : 0x7f5a6eb448a0         140026381093024
+RDI   : 0x2                    2
+RBP   : 0x7f5a6eb448a0         140026381093024
+RSP   : 0x7f5a6eb446d0         140026381092560
+R8    : 0x0                    0
+R9    : 0x7fffffff             2147483647
+R10   : 0x0                    0
+R11   : 0x293                  659
+R12   : 0xc7                   199
+R13   : 0x7f5b4b9576a0         140030086837920
+R14   : 0x7f5b4b952a00         140030086818304
+R15   : 0xc7                   199
+RIP   : 0x7f5b4b85092f         140030085761327
+EFLAGS: 0x293                  [ CF AF SF IF ]
+- Module maps
+558cf9688000-558cf96f4000 r--p 00000000 fd:00 726136                     /home/ubuntu/dashboardome/OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine
+558cf96f4000-558cf9cc2000 r-xp 0006c000 fd:00 726136                     /home/ubuntu/dashboardome/OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine
+558cf9cc2000-558cf9efc000 r--p 0063a000 fd:00 726136                     /home/ubuntu/dashboardome/OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine
+558cf9efd000-558cf9f29000 r--p 00874000 fd:00 726136                     /home/ubuntu/dashboardome/OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine
+558cf9f29000-558cf9f2a000 rw-p 008a0000 fd:00 726136                     /home/ubuntu/dashboardome/OvenMediaEngine/src/bin/RELEASE/OvenMediaEngine
+558cf9f2a000-558cf9f33000 rw-p 00000000 00:00 0 
+7f577e600000-7f57bb400000 rw-p 00000000 00:00 0 
+7f57bb5f2000-7f5865ff2000 rw-p 00000000 00:00 0 
+7f58661f4000-7f5866ff4000 rw-p 00000000 00:00 0 
+7f5866ff4000-7f5866ff5000 ---p 00000000 00:00 0 
+7f5866ff5000-7f58677f5000 rw-p 00000000 00:00 0 
+7f58677f5000-7f5892ff5000 rw-p 00000000 00:00 0 
+7f58933f7000-7f5895bf7000 rw-p 00000000 00:00 0 
+7f5895dfb000-7f58967fb000 rw-p 00000000 00:00 0 
+7f58967fb000-7f58967fc000 ---p 00000000 00:00 0 
+7f58967fc000-7f5896ffc000 rw-p 00000000 00:00 0 
+7f5896ffc000-7f5896ffd000 ---p 00000000 00:00 0 
+7f5896ffd000-7f58977fd000 rw-p 00000000 00:00 0 
+7f58977fd000-7f58977fe000 ---p 00000000 00:00 0 
+7f58977fe000-7f5897ffe000 rw-p 00000000 00:00 0 
+7f5898800000-7f58f2c00000 rw-p 00000000 00:00 0 
+7f58f2dfe000-7f59379fe000 rw-p 00000000 00:00 0 
+7f5937d00000-7f593a000000 rw-p 00000000 00:00 0 
+7f593a2a9000-7f593c9a9000 rw-p 00000000 00:00 0 
+7f593caac000-7f59b61ac000 rw-p 00000000 00:00 0 
+7f59b63ae000-7f59fd22e000 rw-p 00000000 00:00 0 
+7f59fd3b1000-7f5a17231000 rw-p 00000000 00:00 0 
+7f5a17334000-7f5a18a34000 rw-p 00000000 00:00 0 
+7f5a18c35000-7f5a1a035000 rw-p 00000000 00:00 0 
+7f5a1a23a000-7f5a2003a000 rw-p 00000000 00:00 0 
+7f5a2023c000-7f5a2d03c000 rw-p 00000000 00:00 0 
+7f5a2d33d000-7f5a3ea3d000 rw-p 00000000 00:00 0 
+7f5a3ea3d000-7f5a3ea3e000 ---p 00000000 00:00 0 
+7f5a3ea3e000-7f5a3f23e000 rw-p 00000000 00:00 0 
+7f5a3f23e000-7f5a3f23f000 ---p 00000000 00:00 0 
+7f5a3f23f000-7f5a3fa3f000 rw-p 00000000 00:00 0 
+7f5a3fa3f000-7f5a3fa40000 ---p 00000000 00:00 0 
+7f5a3fa40000-7f5a40240000 rw-p 00000000 00:00 0 
+7f5a40240000-7f5a40241000 ---p 00000000 00:00 0 
+7f5a40241000-7f5a40a41000 rw-p 00000000 00:00 0 
+7f5a40a41000-7f5a40a42000 ---p 00000000 00:00 0 
+7f5a40a42000-7f5a41242000 rw-p 00000000 00:00 0 
+7f5a41242000-7f5a41243000 ---p 00000000 00:00 0 
+7f5a41243000-7f5a41a43000 rw-p 00000000 00:00 0 
+7f5a41a43000-7f5a66343000 rw-p 00000000 00:00 0 
+7f5a66343000-7f5a66344000 ---p 00000000 00:00 0 
+7f5a66344000-7f5a66b44000 rw-p 00000000 00:00 0 
+7f5a66b44000-7f5a66b45000 ---p 00000000 00:00 0 
+7f5a66b45000-7f5a67345000 rw-p 00000000 00:00 0 
+7f5a67345000-7f5a67346000 ---p 00000000 00:00 0 
+7f5a67346000-7f5a67b46000 rw-p 00000000 00:00 0 
+7f5a67b46000-7f5a67b47000 ---p 00000000 00:00 0 
+7f5a67b47000-7f5a68347000 rw-p 00000000 00:00 0 
+7f5a68347000-7f5a68348000 ---p 00000000 00:00 0 
+7f5a68348000-7f5a68b48000 rw-p 00000000 00:00 0 
+7f5a68b48000-7f5a68b49000 ---p 00000000 00:00 0 
+7f5a68b49000-7f5a69349000 rw-p 00000000 00:00 0 
+7f5a69349000-7f5a6e349000 rw-p 00000000 00:00 0 
+7f5a6e349000-7f5a6e34a000 ---p 00000000 00:00 0 
+7f5a6e34a000-7f5a6eb4a000 rw-p 00000000 00:00 0 
+7f5a6eb4a000-7f5a6eb4b000 ---p 00000000 00:00 0 
+7f5a6eb4b000-7f5a6f34b000 rw-p 00000000 00:00 0 
+7f5a6f34b000-7f5a6f34c000 ---p 00000000 00:00 0 
+7f5a6f34c000-7f5a6fb4c000 rw-p 00000000 00:00 0 
+7f5a6fb4c000-7f5a6fb4d000 ---p 00000000 00:00 0 
+7f5a6fb4d000-7f5a7034d000 rw-p 00000000 00:00 0 
+7f5a7034d000-7f5a7034e000 ---p 00000000 00:00 0 
+7f5a7034e000-7f5a70b4e000 rw-p 00000000 00:00 0 
+7f5a70b4e000-7f5a742ce000 rw-p 00000000 00:00 0 
+7f5a742ce000-7f5a742cf000 ---p 00000000 00:00 0 
+7f5a742cf000-7f5a74acf000 rw-p 00000000 00:00 0 
+7f5a74acf000-7f5a769cf000 rw-p 00000000 00:00 0 
+7f5a769cf000-7f5a769d0000 ---p 00000000 00:00 0 
+7f5a769d0000-7f5a771d0000 rw-p 00000000 00:00 0 
+7f5a771d0000-7f5a771d1000 ---p 00000000 00:00 0 
+7f5a771d1000-7f5a779d1000 rw-p 00000000 00:00 0 
+7f5a779d1000-7f5a77cd1000 rw-p 00000000 00:00 0 
+7f5a77cd1000-7f5a77cd2000 ---p 00000000 00:00 0 
+7f5a77cd2000-7f5a784d2000 rw-p 00000000 00:00 0 
+7f5a784d2000-7f5a78b52000 rw-p 00000000 00:00 0 
+7f5a78b52000-7f5a78b53000 ---p 00000000 00:00 0 
+7f5a78b53000-7f5a79353000 rw-p 00000000 00:00 0 
+7f5a79353000-7f5a79853000 rw-p 00000000 00:00 0 
+7f5a79853000-7f5a79854000 ---p 00000000 00:00 0 
+7f5a79854000-7f5a7a054000 rw-p 00000000 00:00 0 
+7f5a7a054000-7f5a7a055000 ---p 00000000 00:00 0 
+7f5a7a055000-7f5a7a855000 rw-p 00000000 00:00 0 
+7f5a7a855000-7f5a7a856000 ---p 00000000 00:00 0 
+7f5a7a856000-7f5a7b056000 rw-p 00000000 00:00 0 
+7f5a7b056000-7f5a7b2d6000 rw-p 00000000 00:00 0 
+7f5a7b2d6000-7f5a7b2d7000 ---p 00000000 00:00 0 
+7f5a7b2d7000-7f5a7bad7000 rw-p 00000000 00:00 0 
+7f5a7bad7000-7f5a7cad7000 rw-p 00000000 00:00 0 
+7f5a7cad8000-7f5a7d2d8000 rw-p 00000000 00:00 0 
+7f5a7d2d8000-7f5a7d2d9000 ---p 00000000 00:00 0 
+7f5a7d2d9000-7f5a7dad9000 rw-p 00000000 00:00 0 
+7f5a7dad9000-7f5a7dada000 ---p 00000000 00:00 0 
+7f5a7dada000-7f5a7e2da000 rw-p 00000000 00:00 0 
+7f5a7e300000-7f5a7fa00000 rw-p 00000000 00:00 0 
+7f5a7fade000-7f5a802de000 rw-p 00000000 00:00 0 
+7f5a802de000-7f5a802df000 ---p 00000000 00:00 0 
+7f5a802df000-7f5a80adf000 rw-p 00000000 00:00 0 
+7f5a80adf000-7f5a8855f000 rw-p 00000000 00:00 0 
+7f5a8855f000-7f5a88560000 ---p 00000000 00:00 0 
+7f5a88560000-7f5a88d60000 rw-p 00000000 00:00 0 
+7f5a88d60000-7f5a8bd60000 rw-p 00000000 00:00 0 
+7f5a8bd60000-7f5a8bd61000 ---p 00000000 00:00 0 
+7f5a8bd61000-7f5a8c561000 rw-p 00000000 00:00 0 
+7f5a8c561000-7f5a8c562000 ---p 00000000 00:00 0 
+7f5a8c562000-7f5a8cd62000 rw-p 00000000 00:00 0 
+7f5a8cd63000-7f5a8d563000 rw-p 00000000 00:00 0 
+7f5a8d563000-7f5a8d564000 ---p 00000000 00:00 0 
+7f5a8d564000-7f5a8dd64000 rw-p 00000000 00:00 0 
+7f5a8dd64000-7f5a92564000 rw-p 00000000 00:00 0 
+7f5a92564000-7f5a92565000 ---p 00000000 00:00 0 
+7f5a92565000-7f5a92d65000 rw-p 00000000 00:00 0 
+7f5a92d65000-7f5a92d66000 ---p 00000000 00:00 0 
+7f5a92d66000-7f5a93566000 rw-p 00000000 00:00 0 
+7f5a93566000-7f5a95166000 rw-p 00000000 00:00 0 
+7f5a95166000-7f5a95167000 ---p 00000000 00:00 0 
+7f5a95167000-7f5a95967000 rw-p 00000000 00:00 0 
+7f5a95967000-7f5a95968000 ---p 00000000 00:00 0 
+7f5a95968000-7f5a96168000 rw-p 00000000 00:00 0 
+7f5a96168000-7f5a96169000 ---p 00000000 00:00 0 
+7f5a96169000-7f5a96969000 rw-p 00000000 00:00 0 
+7f5a96969000-7f5aa3fe9000 rw-p 00000000 00:00 0 
+7f5aa77f0000-7f5aa7a70000 rw-p 00000000 00:00 0 
+7f5aa9273000-7f5aa9274000 ---p 00000000 00:00 0 
+7f5aa9274000-7f5aa9a74000 rw-p 00000000 00:00 0 
+7f5aaa275000-7f5aaa276000 ---p 00000000 00:00 0 
+7f5aaa276000-7f5aaaa76000 rw-p 00000000 00:00 0 
+7f5aaaa76000-7f5aab676000 rw-p 00000000 00:00 0 
+7f5aab676000-7f5aab677000 ---p 00000000 00:00 0 
+7f5aab677000-7f5aabe77000 rw-p 00000000 00:00 0 
+7f5aabe77000-7f5aac877000 rw-p 00000000 00:00 0 
+7f5aac877000-7f5aac878000 ---p 00000000 00:00 0 
+7f5aac878000-7f5aad078000 rw-p 00000000 00:00 0 
+7f5aad078000-7f5aad878000 rw-p 00000000 00:00 0 
+7f5aad878000-7f5aad879000 ---p 00000000 00:00 0 
+7f5aad879000-7f5aae079000 rw-p 00000000 00:00 0 
+7f5aae079000-7f5aae07a000 ---p 00000000 00:00 0 
+7f5aae07a000-7f5aae87a000 rw-p 00000000 00:00 0 
+7f5aae87a000-7f5aaf57a000 rw-p 00000000 00:00 0 
+7f5aaf5fb000-7f5ab067b000 rw-p 00000000 00:00 0 
+7f5ab067b000-7f5ab067c000 ---p 00000000 00:00 0 
+7f5ab067c000-7f5ab0e7c000 rw-p 00000000 00:00 0 
+7f5ab0e7c000-7f5ab11fc000 rw-p 00000000 00:00 0 
+7f5ab11fc000-7f5ab11fd000 ---p 00000000 00:00 0 
+7f5ab11fd000-7f5ab19fd000 rw-p 00000000 00:00 0 
+7f5ab19fd000-7f5ab1ffd000 rw-p 00000000 00:00 0 
+7f5ab1ffd000-7f5ab1ffe000 ---p 00000000 00:00 0 
+7f5ab1ffe000-7f5ab27fe000 rw-p 00000000 00:00 0 
+7f5ab27fe000-7f5ab2cfe000 rw-p 00000000 00:00 0 
+7f5ab2cfe000-7f5ab2cff000 ---p 00000000 00:00 0 
+7f5ab2cff000-7f5ab34ff000 rw-p 00000000 00:00 0 
+7f5ab34ff000-7f5ab41ff000 rw-p 00000000 00:00 0 
+7f5ab41ff000-7f5ab4200000 ---p 00000000 00:00 0 
+7f5ab4200000-7f5ab4a00000 rw-p 00000000 00:00 0 
+7f5ab4a00000-7f5abd400000 rw-p 00000000 00:00 0 
+7f5abd4ea000-7f5ae80ea000 rw-p 00000000 00:00 0 
+7f5ae80ea000-7f5ae80eb000 ---p 00000000 00:00 0 
+7f5ae80eb000-7f5ae88eb000 rw-p 00000000 00:00 0 
+7f5ae88eb000-7f5ae88ec000 ---p 00000000 00:00 0 
+7f5ae88ec000-7f5ae90ec000 rw-p 00000000 00:00 0 
+7f5ae98ed000-7f5b028ed000 rw-p 00000000 00:00 0 
+7f5b0297f000-7f5b0307f000 rw-p 00000000 00:00 0 
+7f5b0307f000-7f5b03080000 ---p 00000000 00:00 0 
+7f5b03080000-7f5b03880000 rw-p 00000000 00:00 0 
+7f5b03880000-7f5b04000000 rw-p 00000000 00:00 0 
+7f5b040f0000-7f5b049f0000 rw-p 00000000 00:00 0 
+7f5b049f0000-7f5b049f1000 ---p 00000000 00:00 0 
+7f5b049f1000-7f5b051f1000 rw-p 00000000 00:00 0 
+7f5b051f1000-7f5b051f2000 ---p 00000000 00:00 0 
+7f5b051f2000-7f5b059f2000 rw-p 00000000 00:00 0 
+7f5b059f2000-7f5b059f3000 ---p 00000000 00:00 0 
+7f5b059f3000-7f5b061f3000 rw-p 00000000 00:00 0 
+7f5b061f3000-7f5b061f4000 ---p 00000000 00:00 0 
+7f5b061f4000-7f5b069f4000 rw-p 00000000 00:00 0 
+7f5b069f4000-7f5b069f5000 ---p 00000000 00:00 0 
+7f5b069f5000-7f5b071f5000 rw-p 00000000 00:00 0 
+7f5b071f5000-7f5b071f6000 ---p 00000000 00:00 0 
+7f5b071f6000-7f5b079f6000 rw-p 00000000 00:00 0 
+7f5b079f6000-7f5b079f7000 ---p 00000000 00:00 0 
+7f5b079f7000-7f5b081f7000 rw-p 00000000 00:00 0 
+7f5b081f7000-7f5b081f8000 ---p 00000000 00:00 0 
+7f5b081f8000-7f5b089f8000 rw-p 00000000 00:00 0 
+7f5b089f8000-7f5b126f8000 rw-p 00000000 00:00 0 
+7f5b126f8000-7f5b126f9000 ---p 00000000 00:00 0 
+7f5b126f9000-7f5b12ef9000 rw-p 00000000 00:00 0 
+7f5b12ef9000-7f5b12efa000 ---p 00000000 00:00 0 
+7f5b12efa000-7f5b136fa000 rw-p 00000000 00:00 0 
+7f5b136fa000-7f5b136fb000 ---p 00000000 00:00 0 
+7f5b136fb000-7f5b13efb000 rw-p 00000000 00:00 0 
+7f5b13efb000-7f5b13efc000 ---p 00000000 00:00 0 
+7f5b13efc000-7f5b146fc000 rw-p 00000000 00:00 0 
+7f5b146fc000-7f5b146fd000 ---p 00000000 00:00 0 
+7f5b146fd000-7f5b14efd000 rw-p 00000000 00:00 0 
+7f5b14efd000-7f5b14efe000 ---p 00000000 00:00 0 
+7f5b14efe000-7f5b156fe000 rw-p 00000000 00:00 0 
+7f5b156fe000-7f5b156ff000 ---p 00000000 00:00 0 
+7f5b156ff000-7f5b15eff000 rw-p 00000000 00:00 0 
+7f5b15eff000-7f5b15f00000 ---p 00000000 00:00 0 
+7f5b15f00000-7f5b16700000 rw-p 00000000 00:00 0 
+7f5b16700000-7f5b20200000 rw-p 00000000 00:00 0 
+7f5b20300000-7f5b21400000 rw-p 00000000 00:00 0 
+7f5b21500000-7f5b22400000 rw-p 00000000 00:00 0 
+7f5b2247a000-7f5b237fa000 rw-p 00000000 00:00 0 
+7f5b237fc000-7f5b23bfc000 rw-p 00000000 00:00 0 
+7f5b23dfd000-7f5b243fd000 rw-p 00000000 00:00 0 
+7f5b243fd000-7f5b243fe000 ---p 00000000 00:00 0 
+7f5b243fe000-7f5b24bfe000 rw-p 00000000 00:00 0 
+7f5b24bfe000-7f5b24bff000 ---p 00000000 00:00 0 
+7f5b24bff000-7f5b253ff000 rw-p 00000000 00:00 0 
+7f5b253ff000-7f5b25400000 ---p 00000000 00:00 0 
+7f5b25400000-7f5b25c00000 rw-p 00000000 00:00 0 
+7f5b25c00000-7f5b26c00000 rw-p 00000000 00:00 0 
+7f5b26d80000-7f5b27400000 rw-p 00000000 00:00 0 
+7f5b275fd000-7f5b275fe000 ---p 00000000 00:00 0 
+7f5b275fe000-7f5b27dfe000 rw-p 00000000 00:00 0 
+7f5b28400000-7f5b29200000 rw-p 00000000 00:00 0 
+7f5b29a81000-7f5b2a881000 rw-p 00000000 00:00 0 
+7f5b2aa00000-7f5b2ac00000 rw-p 00000000 00:00 0 
+7f5b2ac80000-7f5b2dc00000 rw-p 00000000 00:00 0 
+7f5b2dc7e000-7f5b2dc7f000 ---p 00000000 00:00 0 
+7f5b2dc7f000-7f5b2e47f000 rw-p 00000000 00:00 0 
+7f5b2e47f000-7f5b2f9ff000 rw-p 00000000 00:00 0 
+7f5b2f9ff000-7f5b2fa00000 ---p 00000000 00:00 0 
+7f5b2fa00000-7f5b30200000 rw-p 00000000 00:00 0 
+7f5b30200000-7f5b30600000 rw-p 00000000 00:00 0 
+7f5b3077c000-7f5b3077d000 ---p 00000000 00:00 0 
+7f5b3077d000-7f5b30f7d000 rw-p 00000000 00:00 0 
+7f5b30f7d000-7f5b30f7e000 ---p 00000000 00:00 0 
+7f5b30f7e000-7f5b3177e000 rw-p 00000000 00:00 0 
+7f5b3177e000-7f5b3177f000 ---p 00000000 00:00 0 
+7f5b3177f000-7f5b31f7f000 rw-p 00000000 00:00 0 
+7f5b31f7f000-7f5b31f80000 ---p 00000000 00:00 0 
+7f5b31f80000-7f5b32780000 rw-p 00000000 00:00 0 
+7f5b32780000-7f5b32e00000 rw-p 00000000 00:00 0 
+7f5b32fff000-7f5b33000000 ---p 00000000 00:00 0 
+7f5b33000000-7f5b33800000 rw-p 00000000 00:00 0 
+7f5b33800000-7f5b33c00000 rw-p 00000000 00:00 0 
+7f5b33d00000-7f5b34c00000 rw-p 00000000 00:00 0 
+7f5b34c7f000-7f5b34f7f000 rw-p 00000000 00:00 0 
+7f5b34f7f000-7f5b34f80000 ---p 00000000 00:00 0 
+7f5b34f80000-7f5b35780000 rw-p 00000000 00:00 0 
+7f5b35780000-7f5b36000000 rw-p 00000000 00:00 0 
+7f5b3617f000-7f5b36180000 ---p 00000000 00:00 0 
+7f5b36180000-7f5b36980000 rw-p 00000000 00:00 0 
+7f5b36980000-7f5b37600000 rw-p 00000000 00:00 0 
+7f5b377ff000-7f5b389ff000 rw-p 00000000 00:00 0 
+7f5b38b80000-7f5b39800000 rw-p 00000000 00:00 0 
+7f5b39800000-7f5b3a400000 rw-p 00000000 00:00 0 
+7f5b3a480000-7f5b3ae00000 rw-p 00000000 00:00 0 
+7f5b3afff000-7f5b3b000000 ---p 00000000 00:00 0 
+7f5b3b000000-7f5b3b800000 rw-p 00000000 00:00 0 
+7f5b3b800000-7f5b3c000000 rw-p 00000000 00:00 0 
+7f5b3c1ff000-7f5b3c200000 ---p 00000000 00:00 0 
+7f5b3c200000-7f5b3ca00000 rw-p 00000000 00:00 0 
+7f5b3ca00000-7f5b3d400000 rw-p 00000000 00:00 0 
+7f5b3d4f7000-7f5b3d4f8000 ---p 00000000 00:00 0 
+7f5b3d4f8000-7f5b3dcf8000 rw-p 00000000 00:00 0 
+7f5b3dcf8000-7f5b3dcf9000 ---p 00000000 00:00 0 
+7f5b3dcf9000-7f5b3e4f9000 rw-p 00000000 00:00 0 
+7f5b3e4f9000-7f5b3e4fa000 ---p 00000000 00:00 0 
+7f5b3e4fa000-7f5b3ecfa000 rw-p 00000000 00:00 0 
+7f5b3ecfa000-7f5b3ecfb000 ---p 00000000 00:00 0 
+7f5b3ecfb000-7f5b3f4fb000 rw-p 00000000 00:00 0 
+7f5b3f4fb000-7f5b3f4fc000 ---p 00000000 00:00 0 
+7f5b3f4fc000-7f5b3fcfc000 rw-p 00000000 00:00 0 
+7f5b3fcfc000-7f5b3fcfd000 ---p 00000000 00:00 0 
+7f5b3fcfd000-7f5b404fd000 rw-p 00000000 00:00 0 
+7f5b404fd000-7f5b404fe000 ---p 00000000 00:00 0 
+7f5b404fe000-7f5b40cfe000 rw-p 00000000 00:00 0 
+7f5b40cfe000-7f5b40cff000 ---p 00000000 00:00 0 
+7f5b40cff000-7f5b414ff000 rw-p 00000000 00:00 0 
+7f5b414ff000-7f5b417ff000 rw-p 00000000 00:00 0 
+7f5b417ff000-7f5b41800000 ---p 00000000 00:00 0 
+7f5b41800000-7f5b42000000 rw-p 00000000 00:00 0 
+7f5b42000000-7f5b42400000 rw-p 00000000 00:00 0 
+7f5b425ff000-7f5b42600000 ---p 00000000 00:00 0 
+7f5b42600000-7f5b42e00000 rw-p 00000000 00:00 0 
+7f5b42e00000-7f5b43200000 rw-p 00000000 00:00 0 
+7f5b4337b000-7f5b4337c000 ---p 00000000 00:00 0 
+7f5b4337c000-7f5b43b7c000 rw-p 00000000 00:00 0 
+7f5b43b7c000-7f5b43b7d000 ---p 00000000 00:00 0 
+7f5b43b7d000-7f5b4437d000 rw-p 00000000 00:00 0 
+7f5b4437d000-7f5b4437e000 ---p 00000000 00:00 0 
+7f5b4437e000-7f5b44b7e000 rw-p 00000000 00:00 0 
+7f5b44b7e000-7f5b44b7f000 ---p 00000000 00:00 0 
+7f5b44b7f000-7f5b4537f000 rw-p 00000000 00:00 0 
+7f5b4537f000-7f5b45380000 ---p 00000000 00:00 0 
+7f5b45380000-7f5b45b80000 rw-p 00000000 00:00 0 
+7f5b45b80000-7f5b46200000 rw-p 00000000 00:00 0 
+7f5b463ff000-7f5b46400000 ---p 00000000 00:00 0 
+7f5b46400000-7f5b46c00000 rw-p 00000000 00:00 0 
+7f5b46c00000-7f5b47000000 rw-p 00000000 00:00 0 
+7f5b471ff000-7f5b473ff000 rw-p 00000000 00:00 0 
+7f5b473ff000-7f5b47400000 ---p 00000000 00:00 0 
+7f5b47400000-7f5b47c00000 rw-p 00000000 00:00 0 
+7f5b47c00000-7f5b47e00000 rw-p 00000000 00:00 0 
+7f5b47ffd000-7f5b47ffe000 ---p 00000000 00:00 0 
+7f5b47ffe000-7f5b487fe000 rw-p 00000000 00:00 0 
+7f5b487fe000-7f5b487ff000 ---p 00000000 00:00 0 
+7f5b487ff000-7f5b48fff000 rw-p 00000000 00:00 0 
+7f5b48fff000-7f5b49000000 ---p 00000000 00:00 0 
+7f5b49000000-7f5b49800000 rw-p 00000000 00:00 0 
+7f5b49800000-7f5b49c00000 rw-p 00000000 00:00 0 
+7f5b49dff000-7f5b49e00000 ---p 00000000 00:00 0 
+7f5b49e00000-7f5b4a600000 rw-p 00000000 00:00 0 
+7f5b4a600000-7f5b4ae00000 rw-p 00000000 00:00 0 
+7f5b4aef0000-7f5b4aefa000 rw-p 00000000 00:00 0 
+7f5b4aefa000-7f5b4aefb000 r--p 00000000 fd:00 1442797                    /opt/ovenmediaengine/lib/libsharpyuv.so.0.1.1
+7f5b4aefb000-7f5b4aeff000 r-xp 00001000 fd:00 1442797                    /opt/ovenmediaengine/lib/libsharpyuv.so.0.1.1
+7f5b4aeff000-7f5b4af00000 r--p 00005000 fd:00 1442797                    /opt/ovenmediaengine/lib/libsharpyuv.so.0.1.1
+7f5b4af00000-7f5b4af01000 r--p 00005000 fd:00 1442797                    /opt/ovenmediaengine/lib/libsharpyuv.so.0.1.1
+7f5b4af01000-7f5b4af02000 rw-p 00006000 fd:00 1442797                    /opt/ovenmediaengine/lib/libsharpyuv.so.0.1.1
+7f5b4af02000-7f5b4af03000 rw-p 00000000 00:00 0 
+7f5b4af03000-7f5b4af38000 r--p 00000000 fd:00 1442976                    /opt/ovenmediaengine/lib/libopenh264.so.2.4.0
+7f5b4af38000-7f5b4b048000 r-xp 00035000 fd:00 1442976                    /opt/ovenmediaengine/lib/libopenh264.so.2.4.0
+7f5b4b048000-7f5b4b072000 r--p 00145000 fd:00 1442976                    /opt/ovenmediaengine/lib/libopenh264.so.2.4.0
+7f5b4b072000-7f5b4b073000 ---p 0016f000 fd:00 1442976                    /opt/ovenmediaengine/lib/libopenh264.so.2.4.0
+7f5b4b073000-7f5b4b076000 r--p 0016f000 fd:00 1442976                    /opt/ovenmediaengine/lib/libopenh264.so.2.4.0
+7f5b4b076000-7f5b4b078000 rw-p 00172000 fd:00 1442976                    /opt/ovenmediaengine/lib/libopenh264.so.2.4.0
+7f5b4b078000-7f5b4b07e000 r--p 00000000 fd:00 1442303                    /opt/ovenmediaengine/lib/libx264.so.165
+7f5b4b07e000-7f5b4b260000 r-xp 00006000 fd:00 1442303                    /opt/ovenmediaengine/lib/libx264.so.165
+7f5b4b260000-7f5b4b29c000 r--p 001e8000 fd:00 1442303                    /opt/ovenmediaengine/lib/libx264.so.165
+7f5b4b29c000-7f5b4b29e000 r--p 00223000 fd:00 1442303                    /opt/ovenmediaengine/lib/libx264.so.165
+7f5b4b29e000-7f5b4b29f000 rw-p 00225000 fd:00 1442303                    /opt/ovenmediaengine/lib/libx264.so.165
+7f5b4b29f000-7f5b4b39a000 rw-p 00000000 00:00 0 
+7f5b4b39a000-7f5b4b39d000 r--p 00000000 fd:00 1442814                    /opt/ovenmediaengine/lib/libwebp.so.7.1.10
+7f5b4b39d000-7f5b4b3f3000 r-xp 00003000 fd:00 1442814                    /opt/ovenmediaengine/lib/libwebp.so.7.1.10
+7f5b4b3f3000-7f5b4b407000 r--p 00059000 fd:00 1442814                    /opt/ovenmediaengine/lib/libwebp.so.7.1.10
+7f5b4b407000-7f5b4b408000 r--p 0006c000 fd:00 1442814                    /opt/ovenmediaengine/lib/libwebp.so.7.1.10
+7f5b4b408000-7f5b4b409000 rw-p 0006d000 fd:00 1442814                    /opt/ovenmediaengine/lib/libwebp.so.7.1.10
+7f5b4b409000-7f5b4b40a000 rw-p 00000000 00:00 0 
+7f5b4b40a000-7f5b4b40d000 r--p 00000000 fd:00 1442800                    /opt/ovenmediaengine/lib/libopus.so.0.8.0
+7f5b4b40d000-7f5b4b453000 r-xp 00003000 fd:00 1442800                    /opt/ovenmediaengine/lib/libopus.so.0.8.0
+7f5b4b453000-7f5b4b465000 r--p 00049000 fd:00 1442800                    /opt/ovenmediaengine/lib/libopus.so.0.8.0
+7f5b4b465000-7f5b4b466000 ---p 0005b000 fd:00 1442800                    /opt/ovenmediaengine/lib/libopus.so.0.8.0
+7f5b4b466000-7f5b4b467000 r--p 0005b000 fd:00 1442800                    /opt/ovenmediaengine/lib/libopus.so.0.8.0
+7f5b4b467000-7f5b4b468000 rw-p 0005c000 fd:00 1442800                    /opt/ovenmediaengine/lib/libopus.so.0.8.0
+7f5b4b468000-7f5b4b46c000 r--p 00000000 fd:00 1442984                    /opt/ovenmediaengine/lib/libfdk-aac.so.2.0.2
+7f5b4b46c000-7f5b4b555000 r-xp 00004000 fd:00 1442984                    /opt/ovenmediaengine/lib/libfdk-aac.so.2.0.2
+7f5b4b555000-7f5b4b5a8000 r--p 000ed000 fd:00 1442984                    /opt/ovenmediaengine/lib/libfdk-aac.so.2.0.2
+7f5b4b5a8000-7f5b4b5ab000 r--p 0013f000 fd:00 1442984                    /opt/ovenmediaengine/lib/libfdk-aac.so.2.0.2
+7f5b4b5ab000-7f5b4b5ac000 rw-p 00142000 fd:00 1442984                    /opt/ovenmediaengine/lib/libfdk-aac.so.2.0.2
+7f5b4b5ac000-7f5b4b5b0000 rw-p 00000000 00:00 0 
+7f5b4b5b0000-7f5b4b5b3000 r--p 00000000 fd:00 1443457                    /opt/ovenmediaengine/lib/libvpx.so.7.0.0
+7f5b4b5b3000-7f5b4b65d000 r-xp 00003000 fd:00 1443457                    /opt/ovenmediaengine/lib/libvpx.so.7.0.0
+7f5b4b65d000-7f5b4b679000 r--p 000ad000 fd:00 1443457                    /opt/ovenmediaengine/lib/libvpx.so.7.0.0
+7f5b4b679000-7f5b4b67a000 r--p 000c8000 fd:00 1443457                    /opt/ovenmediaengine/lib/libvpx.so.7.0.0
+7f5b4b67a000-7f5b4b67b000 rw-p 000c9000 fd:00 1443457                    /opt/ovenmediaengine/lib/libvpx.so.7.0.0
+7f5b4b67b000-7f5b4b67e000 r--p 00000000 fd:00 1451086                    /opt/ovenmediaengine/lib/libswresample.so.4.7.100
+7f5b4b67e000-7f5b4b692000 r-xp 00003000 fd:00 1451086                    /opt/ovenmediaengine/lib/libswresample.so.4.7.100
+7f5b4b692000-7f5b4b697000 r--p 00017000 fd:00 1451086                    /opt/ovenmediaengine/lib/libswresample.so.4.7.100
+7f5b4b697000-7f5b4b698000 ---p 0001c000 fd:00 1451086                    /opt/ovenmediaengine/lib/libswresample.so.4.7.100
+7f5b4b698000-7f5b4b69a000 r--p 0001c000 fd:00 1451086                    /opt/ovenmediaengine/lib/libswresample.so.4.7.100
+7f5b4b69a000-7f5b4b69b000 rw-p 0001e000 fd:00 1451086                    /opt/ovenmediaengine/lib/libswresample.so.4.7.100
+7f5b4b69b000-7f5b4b69e000 r--p 00000000 fd:00 1451090                    /opt/ovenmediaengine/lib/libswscale.so.6.7.100
+7f5b4b69e000-7f5b4b71f000 r-xp 00003000 fd:00 1451090                    /opt/ovenmediaengine/lib/libswscale.so.6.7.100
+7f5b4b71f000-7f5b4b72f000 r--p 00084000 fd:00 1451090                    /opt/ovenmediaengine/lib/libswscale.so.6.7.100
+7f5b4b72f000-7f5b4b730000 ---p 00094000 fd:00 1451090                    /opt/ovenmediaengine/lib/libswscale.so.6.7.100
+7f5b4b730000-7f5b4b731000 r--p 00094000 fd:00 1451090                    /opt/ovenmediaengine/lib/libswscale.so.6.7.100
+7f5b4b731000-7f5b4b732000 rw-p 00095000 fd:00 1451090                    /opt/ovenmediaengine/lib/libswscale.so.6.7.100
+7f5b4b732000-7f5b4b73c000 rw-p 00000000 00:00 0 
+7f5b4b73c000-7f5b4b764000 r--p 00000000 fd:00 394296                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f5b4b764000-7f5b4b8f9000 r-xp 00028000 fd:00 394296                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f5b4b8f9000-7f5b4b951000 r--p 001bd000 fd:00 394296                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f5b4b951000-7f5b4b952000 ---p 00215000 fd:00 394296                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f5b4b952000-7f5b4b956000 r--p 00215000 fd:00 394296                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f5b4b956000-7f5b4b958000 rw-p 00219000 fd:00 394296                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f5b4b958000-7f5b4b965000 rw-p 00000000 00:00 0 
+7f5b4b965000-7f5b4b968000 r--p 00000000 fd:00 403318                     /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f5b4b968000-7f5b4b97f000 r-xp 00003000 fd:00 403318                     /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f5b4b97f000-7f5b4b983000 r--p 0001a000 fd:00 403318                     /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f5b4b983000-7f5b4b984000 r--p 0001d000 fd:00 403318                     /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f5b4b984000-7f5b4b985000 rw-p 0001e000 fd:00 403318                     /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f5b4b985000-7f5b4b993000 r--p 00000000 fd:00 394299                     /usr/lib/x86_64-linux-gnu/libm.so.6
+7f5b4b993000-7f5b4ba0f000 r-xp 0000e000 fd:00 394299                     /usr/lib/x86_64-linux-gnu/libm.so.6
+7f5b4ba0f000-7f5b4ba6a000 r--p 0008a000 fd:00 394299                     /usr/lib/x86_64-linux-gnu/libm.so.6
+7f5b4ba6a000-7f5b4ba6b000 r--p 000e4000 fd:00 394299                     /usr/lib/x86_64-linux-gnu/libm.so.6
+7f5b4ba6b000-7f5b4ba6c000 rw-p 000e5000 fd:00 394299                     /usr/lib/x86_64-linux-gnu/libm.so.6
+7f5b4ba6c000-7f5b4bb06000 r--p 00000000 fd:00 404498                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+7f5b4bb06000-7f5b4bc17000 r-xp 0009a000 fd:00 404498                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+7f5b4bc17000-7f5b4bc86000 r--p 001ab000 fd:00 404498                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+7f5b4bc86000-7f5b4bc87000 ---p 0021a000 fd:00 404498                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+7f5b4bc87000-7f5b4bc92000 r--p 0021a000 fd:00 404498                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+7f5b4bc92000-7f5b4bc95000 rw-p 00225000 fd:00 404498                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+7f5b4bc95000-7f5b4bc98000 rw-p 00000000 00:00 0 
+7f5b4bc98000-7f5b4bca0000 r--p 00000000 fd:00 1442846                    /opt/ovenmediaengine/lib/libjemalloc.so.2
+7f5b4bca0000-7f5b4bd36000 r-xp 00008000 fd:00 1442846                    /opt/ovenmediaengine/lib/libjemalloc.so.2
+7f5b4bd36000-7f5b4bd4b000 r--p 0009e000 fd:00 1442846                    /opt/ovenmediaengine/lib/libjemalloc.so.2
+7f5b4bd4b000-7f5b4bd4c000 ---p 000b3000 fd:00 1442846                    /opt/ovenmediaengine/lib/libjemalloc.so.2
+7f5b4bd4c000-7f5b4bd52000 r--p 000b3000 fd:00 1442846                    /opt/ovenmediaengine/lib/libjemalloc.so.2
+7f5b4bd52000-7f5b4bd53000 rw-p 000b9000 fd:00 1442846                    /opt/ovenmediaengine/lib/libjemalloc.so.2
+7f5b4bd53000-7f5b4bf5d000 rw-p 00000000 00:00 0 
+7f5b4bf5d000-7f5b4bf60000 r--p 00000000 fd:00 1441901                    /opt/ovenmediaengine/lib/libhiredis.so.1.0.0
+7f5b4bf60000-7f5b4bf6c000 r-xp 00003000 fd:00 1441901                    /opt/ovenmediaengine/lib/libhiredis.so.1.0.0
+7f5b4bf6c000-7f5b4bf70000 r--p 0000f000 fd:00 1441901                    /opt/ovenmediaengine/lib/libhiredis.so.1.0.0
+7f5b4bf70000-7f5b4bf71000 r--p 00012000 fd:00 1441901                    /opt/ovenmediaengine/lib/libhiredis.so.1.0.0
+7f5b4bf71000-7f5b4bf72000 rw-p 00013000 fd:00 1441901                    /opt/ovenmediaengine/lib/libhiredis.so.1.0.0
+7f5b4bf72000-7f5b4bf74000 rw-p 00000000 00:00 0 
+7f5b4bf74000-7f5b4bf77000 r--p 00000000 fd:00 1442428                    /opt/ovenmediaengine/lib/libpcre2-8.so.0.10.4
+7f5b4bf77000-7f5b4bfe3000 r-xp 00003000 fd:00 1442428                    /opt/ovenmediaengine/lib/libpcre2-8.so.0.10.4
+7f5b4bfe3000-7f5b4c00b000 r--p 0006f000 fd:00 1442428                    /opt/ovenmediaengine/lib/libpcre2-8.so.0.10.4
+7f5b4c00b000-7f5b4c00c000 r--p 00096000 fd:00 1442428                    /opt/ovenmediaengine/lib/libpcre2-8.so.0.10.4
+7f5b4c00c000-7f5b4c00d000 rw-p 00097000 fd:00 1442428                    /opt/ovenmediaengine/lib/libpcre2-8.so.0.10.4
+7f5b4c00d000-7f5b4c012000 r--p 00000000 fd:00 1444243                    /opt/ovenmediaengine/lib/libsrtp2.so.1
+7f5b4c012000-7f5b4c01e000 r-xp 00005000 fd:00 1444243                    /opt/ovenmediaengine/lib/libsrtp2.so.1
+7f5b4c01e000-7f5b4c022000 r--p 00011000 fd:00 1444243                    /opt/ovenmediaengine/lib/libsrtp2.so.1
+7f5b4c022000-7f5b4c023000 r--p 00014000 fd:00 1444243                    /opt/ovenmediaengine/lib/libsrtp2.so.1
+7f5b4c023000-7f5b4c024000 rw-p 00015000 fd:00 1444243                    /opt/ovenmediaengine/lib/libsrtp2.so.1
+7f5b4c024000-7f5b4c0d3000 r--p 00000000 fd:00 1447159                    /opt/ovenmediaengine/lib/libcrypto.so.3
+7f5b4c0d3000-7f5b4c35b000 r-xp 000af000 fd:00 1447159                    /opt/ovenmediaengine/lib/libcrypto.so.3
+7f5b4c35b000-7f5b4c432000 r--p 00337000 fd:00 1447159                    /opt/ovenmediaengine/lib/libcrypto.so.3
+7f5b4c432000-7f5b4c48a000 r--p 0040d000 fd:00 1447159                    /opt/ovenmediaengine/lib/libcrypto.so.3
+7f5b4c48a000-7f5b4c48d000 rw-p 00465000 fd:00 1447159                    /opt/ovenmediaengine/lib/libcrypto.so.3
+7f5b4c48d000-7f5b4c490000 rw-p 00000000 00:00 0 
+7f5b4c490000-7f5b4c4ae000 r--p 00000000 fd:00 1447552                    /opt/ovenmediaengine/lib/libssl.so.3
+7f5b4c4ae000-7f5b4c511000 r-xp 0001e000 fd:00 1447552                    /opt/ovenmediaengine/lib/libssl.so.3
+7f5b4c511000-7f5b4c530000 r--p 00081000 fd:00 1447552                    /opt/ovenmediaengine/lib/libssl.so.3
+7f5b4c530000-7f5b4c539000 r--p 0009f000 fd:00 1447552                    /opt/ovenmediaengine/lib/libssl.so.3
+7f5b4c539000-7f5b4c53e000 rw-p 000a8000 fd:00 1447552                    /opt/ovenmediaengine/lib/libssl.so.3
+7f5b4c53e000-7f5b4c550000 r--p 00000000 fd:00 1451094                    /opt/ovenmediaengine/lib/libavutil.so.57.28.100
+7f5b4c550000-7f5b4c5e1000 r-xp 00012000 fd:00 1451094                    /opt/ovenmediaengine/lib/libavutil.so.57.28.100
+7f5b4c5e1000-7f5b4c5fb000 r--p 000a3000 fd:00 1451094                    /opt/ovenmediaengine/lib/libavutil.so.57.28.100
+7f5b4c5fb000-7f5b4c5fc000 ---p 000bd000 fd:00 1451094                    /opt/ovenmediaengine/lib/libavutil.so.57.28.100
+7f5b4c5fc000-7f5b4c608000 r--p 000bd000 fd:00 1451094                    /opt/ovenmediaengine/lib/libavutil.so.57.28.100
+7f5b4c608000-7f5b4c609000 rw-p 000c9000 fd:00 1451094                    /opt/ovenmediaengine/lib/libavutil.so.57.28.100
+7f5b4c609000-7f5b4c718000 rw-p 00000000 00:00 0 
+7f5b4c718000-7f5b4c736000 r--p 00000000 fd:00 1451078                    /opt/ovenmediaengine/lib/libavcodec.so.59.37.100
+7f5b4c736000-7f5b4ca52000 r-xp 0001e000 fd:00 1451078                    /opt/ovenmediaengine/lib/libavcodec.so.59.37.100
+7f5b4ca52000-7f5b4caea000 r--p 0033a000 fd:00 1451078                    /opt/ovenmediaengine/lib/libavcodec.so.59.37.100
+7f5b4caea000-7f5b4caeb000 ---p 003d2000 fd:00 1451078                    /opt/ovenmediaengine/lib/libavcodec.so.59.37.100
+7f5b4caeb000-7f5b4cb00000 r--p 003d2000 fd:00 1451078                    /opt/ovenmediaengine/lib/libavcodec.so.59.37.100
+7f5b4cb00000-7f5b4cb01000 rw-p 003e7000 fd:00 1451078                    /opt/ovenmediaengine/lib/libavcodec.so.59.37.100
+7f5b4cb01000-7f5b4cc77000 rw-p 00000000 00:00 0 
+7f5b4cc77000-7f5b4cc7f000 r--p 00000000 fd:00 1451071                    /opt/ovenmediaengine/lib/libavfilter.so.8.44.100
+7f5b4cc7f000-7f5b4cc97000 r-xp 00008000 fd:00 1451071                    /opt/ovenmediaengine/lib/libavfilter.so.8.44.100
+7f5b4cc97000-7f5b4cca0000 r--p 00020000 fd:00 1451071                    /opt/ovenmediaengine/lib/libavfilter.so.8.44.100
+7f5b4cca0000-7f5b4cca5000 r--p 00028000 fd:00 1451071                    /opt/ovenmediaengine/lib/libavfilter.so.8.44.100
+7f5b4cca5000-7f5b4cca6000 rw-p 0002d000 fd:00 1451071                    /opt/ovenmediaengine/lib/libavfilter.so.8.44.100
+7f5b4cca6000-7f5b4ccbd000 r--p 00000000 fd:00 1451074                    /opt/ovenmediaengine/lib/libavformat.so.59.27.100
+7f5b4ccbd000-7f5b4cd68000 r-xp 00017000 fd:00 1451074                    /opt/ovenmediaengine/lib/libavformat.so.59.27.100
+7f5b4cd68000-7f5b4cd99000 r--p 000c2000 fd:00 1451074                    /opt/ovenmediaengine/lib/libavformat.so.59.27.100
+7f5b4cd99000-7f5b4cda6000 r--p 000f2000 fd:00 1451074                    /opt/ovenmediaengine/lib/libavformat.so.59.27.100
+7f5b4cda6000-7f5b4cda7000 rw-p 000ff000 fd:00 1451074                    /opt/ovenmediaengine/lib/libavformat.so.59.27.100
+7f5b4cda7000-7f5b4cdc8000 r--p 00000000 fd:00 1442160                    /opt/ovenmediaengine/lib/libsrt.so.1.5.2
+7f5b4cdc8000-7f5b4ce71000 r-xp 00021000 fd:00 1442160                    /opt/ovenmediaengine/lib/libsrt.so.1.5.2
+7f5b4ce71000-7f5b4ce91000 r--p 000ca000 fd:00 1442160                    /opt/ovenmediaengine/lib/libsrt.so.1.5.2
+7f5b4ce91000-7f5b4ce92000 ---p 000ea000 fd:00 1442160                    /opt/ovenmediaengine/lib/libsrt.so.1.5.2
+7f5b4ce92000-7f5b4ce93000 r--p 000ea000 fd:00 1442160                    /opt/ovenmediaengine/lib/libsrt.so.1.5.2
+7f5b4ce93000-7f5b4ce95000 rw-p 000eb000 fd:00 1442160                    /opt/ovenmediaengine/lib/libsrt.so.1.5.2
+7f5b4ce95000-7f5b4ce9b000 rw-p 00000000 00:00 0 
+7f5b4ce9b000-7f5b4ce9d000 r--p 00000000 fd:00 404615                     /usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7f5b4ce9d000-7f5b4cea1000 r-xp 00002000 fd:00 404615                     /usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7f5b4cea1000-7f5b4cea2000 r--p 00006000 fd:00 404615                     /usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7f5b4cea2000-7f5b4cea3000 r--p 00006000 fd:00 404615                     /usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7f5b4cea3000-7f5b4cea4000 rw-p 00007000 fd:00 404615                     /usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7f5b4cea4000-7f5b4cea6000 r--p 00000000 fd:00 404629                     /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7f5b4cea6000-7f5b4ceb7000 r-xp 00002000 fd:00 404629                     /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7f5b4ceb7000-7f5b4cebd000 r--p 00013000 fd:00 404629                     /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7f5b4cebd000-7f5b4cebe000 ---p 00019000 fd:00 404629                     /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7f5b4cebe000-7f5b4cebf000 r--p 00019000 fd:00 404629                     /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7f5b4cebf000-7f5b4cec0000 rw-p 0001a000 fd:00 404629                     /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7f5b4ceca000-7f5b4cecc000 rw-p 00000000 00:00 0 
+7f5b4cecc000-7f5b4cece000 r--p 00000000 fd:00 393349                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7f5b4cece000-7f5b4cef8000 r-xp 00002000 fd:00 393349                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7f5b4cef8000-7f5b4cf03000 r--p 0002c000 fd:00 393349                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7f5b4cf04000-7f5b4cf06000 r--p 00037000 fd:00 393349                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7f5b4cf06000-7f5b4cf08000 rw-p 00039000 fd:00 393349                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7ffcc84f7000-7ffcc8518000 rw-p 00000000 00:00 0                          [stack]
+7ffcc85a1000-7ffcc85a5000 r--p 00000000 00:00 0                          [vvar]
+7ffcc85a5000-7ffcc85a7000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]

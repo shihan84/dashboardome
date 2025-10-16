@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>OvenMediaEngine API Test</h1>
+    <div id="results"></div>
+    
+    <script>
+        async function testAPI() {
+            const results = document.getElementById('results');
+            const baseUrl = 'http://192.168.1.102:8081/v1';
+            const auth = btoa('ovenmediaengine');
+            
+            try {
+                // Test stats endpoint
+                const statsResponse = await fetch(`${baseUrl}/stats/current`, {
+                    headers: {
+                        'Authorization': `Basic ${auth}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (statsResponse.ok) {
+                    const statsData = await statsResponse.json();
+                    results.innerHTML += '<p>✅ Stats API: ' + JSON.stringify(statsData, null, 2) + '</p>';
+                } else {
+                    results.innerHTML += '<p>❌ Stats API Error: ' + statsResponse.status + ' ' + statsResponse.statusText + '</p>';
+                }
+                
+                // Test vhosts endpoint
+                const vhostsResponse = await fetch(`${baseUrl}/vhosts`, {
+                    headers: {
+                        'Authorization': `Basic ${auth}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (vhostsResponse.ok) {
+                    const vhostsData = await vhostsResponse.json();
+                    results.innerHTML += '<p>✅ VHosts API: ' + JSON.stringify(vhostsData, null, 2) + '</p>';
+                } else {
+                    results.innerHTML += '<p>❌ VHosts API Error: ' + vhostsResponse.status + ' ' + vhostsResponse.statusText + '</p>';
+                }
+                
+            } catch (error) {
+                results.innerHTML += '<p>❌ Network Error: ' + error.message + '</p>';
+            }
+        }
+        
+        // Run test when page loads
+        window.onload = testAPI;
+    </script>
+</body>
+</html>

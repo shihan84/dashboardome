@@ -1,7 +1,6 @@
 import React from 'react';
 import { ConfigProvider } from 'antd';
-import { Dashboard } from './components/Dashboard';
-import { ErrorBoundary } from './components/ErrorBoundary';
+import { Dashboard, ErrorBoundary } from './components';
 import './App.css';
 
 function App() {

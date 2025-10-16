@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  ovenmediaengine:
+    image: airensoft/ovenmediaengine:latest
+    container_name: ome-server
+    ports:
+      - "1935:1935"    # RTMP
+      - "8081:8081"    # API
+      - "3333:3333"    # WebRTC Signalling
+      - "3334:3334"    # LLHLS
+      - "9999:9999"    # SRT
+    volumes:
+      - ./ome-config:/opt/ovenmediaengine/bin/origin_conf
+      - ./ome-logs:/opt/ovenmediaengine/bin/logs
+    environment:
+      - OME_HOST=192.168.1.102
+    restart: unless-stopped
+    network_mode: host

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Server version="8">
+	<Name>OvenMediaEngine</Name>
+	<Type>origin</Type>
+	<IP>*</IP>
+	<PrivacyProtection>false</PrivacyProtection>
+
+	<StunServer>stun.ovenmediaengine.com:13478</StunServer>
+
+	<Modules>
+		<HTTP2>
+			<Enable>true</Enable>
+		</HTTP2>
+		<LLHLS>
+			<Enable>true</Enable>
+		</LLHLS>
+		<P2P>
+			<Enable>false</Enable>
+			<MaxClientPeersPerHostPeer>2</MaxClientPeersPerHostPeer>
+		</P2P>
+	</Modules>
+
+	<Bind>
+		<Managers>
+			<API>
+				<Port>8081</Port>
+				<TLSPort>8082</TLSPort>
+				<WorkerCount>1</WorkerCount>
+			</API>
+		</Managers>
+
+		<Providers>
+			<RTMP>
+				<Port>1935</Port>
+				<WorkerCount>1</WorkerCount>
+			</RTMP>
+			<SRT>
+				<Port>9999</Port>
+				<WorkerCount>1</WorkerCount>
+			</SRT>
+			<WebRTC>
+				<Signalling>
+					<Port>3333</Port>
+					<TLSPort>3334</TLSPort>
+					<WorkerCount>1</WorkerCount>
+				</Signalling>
+				<IceCandidates>
+					<TcpRelay>*:3478</TcpRelay>
+					<IceCandidate>*:10000-10005/udp</IceCandidate>
+				</IceCandidates>
+			</WebRTC>
+		</Providers>
+
+		<Publishers>
+			<LLHLS>
+				<Port>3334</Port>
+				<TLSPort>3335</TLSPort>
+				<WorkerCount>1</WorkerCount>
+			</LLHLS>
+			<WebRTC>
+				<Signalling>
+					<Port>3333</Port>
+					<TLSPort>3334</TLSPort>
+					<WorkerCount>1</WorkerCount>
+				</Signalling>
+			</WebRTC>
+		</Publishers>
+	</Bind>
+
+	<Managers>
+		<Host>
+			<Names>
+				<Name>*</Name>
+			</Names>
+		</Host>
+		<API>
+			<AccessToken>ovenmediaengine</AccessToken>
+			<CrossDomains>
+				<Url>*</Url>
+			</CrossDomains>
+		</API>
+	</Managers>
+
+	<VirtualHosts>
+		<VirtualHost>
+			<Name>default</Name>
+			<Host>
+				<Names>
+					<Name>*</Name>
+				</Names>
+			</Host>
+			<Applications>
+				<Application>
+					<Name>app</Name>
+					<Type>live</Type>
+					<Providers>
+						<RTMP />
+						<SRT />
+						<WebRTC />
+					</Providers>
+					<Publishers>
+						<LLHLS>
+							<ChunkDuration>0.5</ChunkDuration>
+							<SegmentDuration>2</SegmentDuration>
+						</LLHLS>
+						<WebRTC />
+					</Publishers>
+				</Application>
+			</Applications>
+		</VirtualHost>
+	</VirtualHosts>
+</Server>
